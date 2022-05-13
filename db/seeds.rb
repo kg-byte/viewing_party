@@ -7,6 +7,10 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+User.destroy_all
+Party.destroy_all
+
+
 10.times do
   User.create(name: Faker::Name.name, email: Faker::Number.number(digits: 3).to_s + Faker::Internet.email)
 end
