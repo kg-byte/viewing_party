@@ -28,7 +28,21 @@ class UsersController < ApplicationController
     end
   end
 
-  def login; end
+  def login
+    user = User.find_by(email: params[:email])
+    if !user 
+      flash[:error] = "u don goofed try again!"
+      render :login_form
+    end
+    if user.authenticate(params[:password])
+      session[:user_id] = user.id
+      flash[:success] = "Welcome, #{user.name}!"
+      redirect_to user_path(user)
+    else
+      flash[:error] = "u don goofed try again!"
+      render :login_form
+    end
+  end
 
   private
 

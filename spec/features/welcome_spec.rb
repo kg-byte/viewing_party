@@ -29,10 +29,9 @@ RSpec.describe 'Welcomes', type: :feature do
     it 'has button to login' do 
       visit root_path
 
-      click_on 'login'
+      click_on 'Login'
 
-      expect(current_path).to eq ''
-
+      expect(current_path).to eq '/login'
     end
   end
 end
