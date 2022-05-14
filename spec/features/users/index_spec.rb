@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe 'users dashboard' do
-  let!(:user1) { User.create(name: 'Jeff', email: 'jeff@email.com') }
-  let!(:user2) { User.create(name: 'Amy', email: 'amy@email.com') }
+  let!(:user1) { User.create(name: 'Jeff', email: 'jeff@email.com', password: 'abc', password_confirmation: 'abc') }
+  let!(:user2) { User.create(name: 'Amy', email: 'amy@email.com', password: 'abc', password_confirmation: 'abc') }
 
   before(:each) do
     visit users_path

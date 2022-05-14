@@ -1,10 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe 'new party page' do
-  let!(:user1) { User.create(name: 'person1', email: 'email1@email1.com') }
-  let!(:user2) { User.create(name: 'person2', email: 'email1@email2.com') }
-  let!(:user3) { User.create(name: 'person3', email: 'email1@email3.com') }
-  let!(:user4) { User.create(name: 'person4', email: 'email1@email4.com') }
+  let!(:user1) { User.create(name: 'person1', email: 'email1@email1.com', password: 'password', password_confirmation: 'password') }
+  let!(:user2) { User.create(name: 'person2', email: 'email1@email2.com', password: 'password', password_confirmation: 'password') }
+  let!(:user3) { User.create(name: 'person3', email: 'email1@email3.com', password: 'password', password_confirmation: 'password') }
+  let!(:user4) { User.create(name: 'person4', email: 'email1@email4.com', password: 'password', password_confirmation: 'password') }
   before(:each) do
     details = JSON.parse(File.read('spec/fixtures/movie_details.json'), symbolize_names: true)
     allow(TmdbService).to receive(:movie_details).and_return(details)

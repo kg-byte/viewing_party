@@ -8,6 +8,8 @@ RSpec.describe 'new user page' do
   it 'can create new user' do
     fill_in 'user[name]', with: 'Greg'
     fill_in 'user[email]', with: 'greg@email.com'
+    fill_in 'user[password]', with: 'greg1012'
+    fill_in 'user[password_confirmation]', with: 'greg1012'
     click_button('Register')
     user = User.last
 
@@ -16,7 +18,7 @@ RSpec.describe 'new user page' do
   end
 
   it 'shows error message when wrong info is entered' do
-    User.create!(name: 'greg', email: 'greg@email.com')
+    User.create!(name: 'greg', email: 'greg@email.com', password: 'abc', password_confirmation: 'abc')
 
     fill_in 'user[name]', with: 'Greg2'
     fill_in 'user[email]', with: 'greg@email.com'
