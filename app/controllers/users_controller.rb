@@ -16,14 +16,19 @@ class UsersController < ApplicationController
   def destroy; end
 
   def create
-    user = User.create(user_params)
+    params = user_params
+    params[:email] = user_params[:email].downcase
+    user = User.create(params)
     if user.save
       redirect_to user_path(user)
+      flash[:success] = "Welcome, #{user.name}!"
     else
       redirect_to '/register'
       flash[:alert] = 'Error: please enter a name and unique email to register.'
     end
   end
+
+  def login; end
 
   private
 

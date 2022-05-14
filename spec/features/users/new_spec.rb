@@ -15,6 +15,8 @@ RSpec.describe 'new user page' do
 
     expect(current_path).to eq(user_path(user))
     expect(page).to have_content("#{user.name}'s Dashboard")
+    expect(page).to have_content("Welcome, #{user.name}!")
+    
   end
 
   it 'shows error message when wrong info is entered' do

@@ -13,8 +13,8 @@ Rails.application.routes.draw do
   end
 
   get 'register', to: 'users#new'
-  get 'sign_in', to: 'sessions#new'
-  post 'sign_in', to: 'sessions#create', as: 'log_in'
+  get 'login', to: 'users#login'
+  post 'login', to: 'sessions#create', as: 'log_in'
   delete 'logout', to: 'sessions#destroy'
   # get 'password', to: 'passwords#edit', as: 'edit_password'
   # patch 'password', to: 'passwords#update'
