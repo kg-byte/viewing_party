@@ -2,7 +2,8 @@ class ViewingPartyController < ApplicationController
   before_action :set_user, :set_movie
   def new
     @party = Party.new(party_params)
-    @users = User.where.not(id: params[:user_id])
+    user = User.find(params[:user_id])
+    @friends = user.friends
   end
 
   def create
@@ -10,7 +11,7 @@ class ViewingPartyController < ApplicationController
       @party = Party.create(party_proper_params)
 
       PartyUser.create(user_id: params[:user_id], party_id: @party.id, is_host: true)
-      user_ids.each { |id| PartyUser.create(user_id: id, party_id: @party.id, is_host: false) } if user_ids
+      friend_ids.each { |id| PartyUser.create(user_id: id, party_id: @party.id, is_host: false) } if friend_ids
       redirect_to user_path(@user)
     else
       redirect_to new_user_movie_viewing_party_path(@user.id, @movie.id)
@@ -46,7 +47,7 @@ class ViewingPartyController < ApplicationController
     @movie = MovieFacade.movie_details(params[:movie_id])
   end
 
-  def user_ids
-    params[:user_ids].map { |id| id.to_i } if params[:user_ids]
+  def friend_ids
+    params[:friend_ids].map { |id| id.to_i } if params[:friend_ids]
   end
 end

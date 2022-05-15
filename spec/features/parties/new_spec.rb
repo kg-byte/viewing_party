@@ -5,6 +5,7 @@ RSpec.describe 'new party page' do
   let!(:user2) { User.create(name: 'person2', email: 'email1@email2.com', password: 'password', password_confirmation: 'password') }
   let!(:user3) { User.create(name: 'person3', email: 'email1@email3.com', password: 'password', password_confirmation: 'password') }
   let!(:user4) { User.create(name: 'person4', email: 'email1@email4.com', password: 'password', password_confirmation: 'password') }
+
   before(:each) do
     details = JSON.parse(File.read('spec/fixtures/movie_details.json'), symbolize_names: true)
     allow(TmdbService).to receive(:movie_details).and_return(details)
@@ -12,12 +13,15 @@ RSpec.describe 'new party page' do
     allow(TmdbService).to receive(:movie_cast).and_return(cast)
     review = JSON.parse(File.read('spec/fixtures/movie_review.json'), symbolize_names: true)
     allow(TmdbService).to receive(:movie_review).and_return(review)
+    Friendship.create(user: user1, friend:user2)
+    Friendship.create(user: user1, friend:user3)
+    Friendship.create(user: user1, friend:user4)
 
     visit "users/#{user1.id}/movies/545611/viewing_party/new"
   end
 
   it 'can create new party' do
-    within(".user-#{user2.id}") do
+    within(".friend-#{user2.id}") do
       page.check
     end
 

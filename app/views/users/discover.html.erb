@@ -1,9 +1,9 @@
 
-<%= render partial: 'partials/navbar_default' %>
+<%= render partial: 'partials/navbar_user_discover', :locals => {:user_id => @user.id}%>
 <br><br>
 
 <div class="friends">
-  <h1>Friends:</h1>
+  <h1>My Friends:</h1>
   <% if @user.friends ==[] %>
     <h4>You have not added any friends</h4>
   <% else %>
@@ -13,7 +13,7 @@
       </li>
     <% end %>
   <% end %>
-  <%= form_with url: "/users/#{@user.id}/friends?email=email", method: :post, local:true do |f|%>
+  <%= form_with url: "/users/#{@user.id}/friendships", method: :post, local:true do |f|%>
   <div class="card" style="width: 18rem;">
     <div class="card-body">
       <div class="mb-3">
