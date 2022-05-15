@@ -33,8 +33,7 @@ class UsersController < ApplicationController
     if !user 
       flash[:error] = "u don goofed try again!"
       render :login_form
-    end
-    if user.authenticate(params[:password])
+    elsif user.authenticate(params[:password])
       session[:user_id] = user.id
       flash[:success] = "Welcome, #{user.name}!"
       redirect_to user_path(user)
