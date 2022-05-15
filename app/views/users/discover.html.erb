@@ -2,30 +2,6 @@
 <%= render partial: 'partials/navbar_user_discover', :locals => {:user_id => @user.id}%>
 <br><br>
 
-<div class="friends">
-  <h1>My Friends:</h1>
-  <% if @user.friends ==[] %>
-    <h4>You have not added any friends</h4>
-  <% else %>
-    <% @user.friends.each do |friend| %>
-      <li>
-        <%= friend.name %>
-      </li>
-    <% end %>
-  <% end %>
-  <%= form_with url: "/users/#{@user.id}/friendships", method: :post, local:true do |f|%>
-  <div class="card" style="width: 18rem;">
-    <div class="card-body">
-      <div class="mb-3">
-        <%= f.label :email, "Find a friend by email", { class: "form-label"} %>
-        <%= f.text_field :email, { class: "form-control", placeholder: "Enter Email Here..." } %>
-      </div>
-      <%= f.submit "Add Friend", class: "btn btn-primary" %>
-    </div>
-  </div>
-  <% end %>
-</div>
-
 
 <div class="movies">
   <h1>Discover Movies You'll Enjoy: </h1>

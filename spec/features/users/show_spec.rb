@@ -26,4 +26,53 @@ RSpec.describe 'user dashboard' do
 
     expect(current_path).to eq "/users/#{user1.id}/discover"
   end
+
+   describe 'friends' do 
+      let!(:alicia) { User.create(name: 'Alicia', email: 'alicia@email.com', password: 'abc', password_confirmation: 'abc') }
+    it 'can search and add a friend in the db' do 
+      
+      within(".friends") do 
+        fill_in :email, with: 'alicia@email.com'
+        click_on 'Add Friend'
+      end
+
+        expect(current_path).to eq "/users/#{user1.id}/discover"
+        expect(page).to have_content("Alicia is added as a friend. Invite them to your next Viewing Party!")
+    end
+
+    it 'can not add self' do 
+      
+      within(".friends") do 
+        fill_in :email, with: 'jeff@email.com'
+        click_on 'Add Friend'
+      end
+
+      expect(current_path).to eq "/users/#{user1.id}/discover"
+      expect(page).to have_content("You're already your best friend-no need to make it official!
+")
+    end
+
+    it 'can not add existing friends' do 
+      Friendship.create(user: user1, friend: alicia)
+      within(".friends") do 
+        fill_in :email, with: 'alicia@email.com'
+        click_on 'Add Friend'
+      end
+
+        expect(current_path).to eq "/users/#{user1.id}/discover"
+        expect(page).to have_content("Alicia is already your friend-try a different email!")
+      end
+
+    it 'can not add non-existing users' do 
+      Friendship.create(user: user1, friend: alicia)
+      within(".friends") do 
+        fill_in :email, with: 'aliciawow@email.com'
+        click_on 'Add Friend'
+      end
+      
+      expect(current_path).to eq "/users/#{user1.id}/discover"
+      expect(page).to have_content("Doesn't seem like your friend has an account yet, invite them to join Viewing Party!
+")
+      end
+  end
 end
