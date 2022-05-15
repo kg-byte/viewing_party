@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   get 'users/:id/discover', to: 'users#discover'
   resources :users, only: %i[new index show create] do
+    resources :friendships, only: %i[create]
     resources :movies, only: %i[index show] do
       resources :viewing_party, only: %i[new create]
     end

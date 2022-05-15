@@ -19,11 +19,11 @@
     </ul>
     <ul>
       <strong><%= f.label :users, "Invite Friends:", { class: "form-label"}%></strong><br/>
-    <% @users.each do |user| %>
+    <% @friends.each do |friend| %>
     <li>
-      <div class="user-<%=user.id%>">
-      <%= f.label :user, user.name %>
-      <%= check_box_tag "user_ids[]", user.id, false %>
+      <div class="friend-<%=friend.id%>">
+      <%= f.label :friend, friend.name %>
+      <%= check_box_tag "friend_ids[]", friend.id, false %>
     </div>
    </li>
     <% end %>
