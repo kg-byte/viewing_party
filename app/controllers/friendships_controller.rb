@@ -8,7 +8,7 @@ class FriendshipsController < ApplicationController
   	elsif friend.id == params[:user_id].to_i
   	  flash[:alert] = "You're already your best friend-no need to make it official!"
   	elsif user.friends.include?(friend)
-  	  flahs[:alert] = "#{friend.name} is already your friend-try a different email!"
+  	  flash[:alert] = "#{friend.name} is already your friend-try a different email!"
   	else
   	  flash[:success] = "#{friend.name} is added as a friend. Invite them to your next Viewing Party!"
   	  Friendship.create(user_id: params[:user_id], friend_id: friend.id)
