@@ -13,7 +13,7 @@ class FriendshipsController < ApplicationController
   	  flash[:success] = "#{friend.name} is added as a friend. Invite them to your next Viewing Party!"
   	  Friendship.create(user_id: params[:user_id], friend_id: friend.id)
   	end  
-  	  redirect_to "/users/#{params[:user_id]}/discover"
+  	  redirect_to "/users/#{params[:user_id]}"
   end
 
 end
