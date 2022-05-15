@@ -26,7 +26,7 @@ class UsersController < ApplicationController
       redirect_to '/register'
       flash[:alert] = 'Error: please enter a name and unique email to register.'
     end
-  end
+end
 
   def login
     user = User.find_by(email: params[:email])

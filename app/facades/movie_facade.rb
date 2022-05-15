@@ -7,13 +7,11 @@ class MovieFacade
 
   def self.search(keyword)
     search_movies_data(keyword)
-    if @first_20[:total_results] == 0
-      "No movies found containing '#{keyword}'"
-    else
+    if @first_20[:total_results] != 0
       data = @first_20[:results] + @second_20[:results]
-      data.map do |movie_data|
-        MovieDetail.new(movie_data)
-      end
+      data.map { |movie_data| MovieDetail.new(movie_data)}
+    else
+      nil
     end
   end
 

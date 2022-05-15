@@ -48,7 +48,7 @@ RSpec.describe 'users discover' do
       click_button 'Search'
 
       expect(current_path).to eq("/users/#{user1.id}/discover")
-      expect(page).to have_content("Error: No movies found containing 'doggggggg', please try again!.")
+      expect(page).to have_content("Error: No movies found containing 'doggggggg', please try again!")
     end
   end
 end

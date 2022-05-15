@@ -1,10 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe MovieFacade do
-  # xit 'collects data for to_20 movies', :vcr do
-  #   results = MovieFacade.top_movies_data
-  #   expect(results).to be_all MovieDetail
-  # end
 
   it 'creates 20 top movies objects' do
     data = JSON.parse(File.read('spec/fixtures/top_20.json'), symbolize_names: true)[:results]
@@ -18,7 +14,6 @@ RSpec.describe MovieFacade do
     results = MovieFacade.search('man')
 
     expect(results).to be_all MovieDetail
-
     expect(results.count).to eq(40)
   end
 

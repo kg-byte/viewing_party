@@ -5,9 +5,9 @@ class MoviesController < ApplicationController
     if params[:keyword]
       @movies = MovieFacade.search(params[:keyword])
       @keyword = params[:keyword]
-      if @movies.instance_of?(String)
+      if @movies.class != Array
         redirect_to "/users/#{@user.id}/discover"
-        flash[:alert] = "Error: #{@movies}, please try again!."
+        flash[:alert] = "Error: #{@movies}, please try again!"
       end
     end
   end
