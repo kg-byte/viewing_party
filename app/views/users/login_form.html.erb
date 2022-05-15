@@ -1,0 +1,29 @@
+<%= render partial: 'partials/navbar_default' %>
+<br>
+<div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+  <%= image_tag "welcome_back.jpeg", height:200 %>    
+ </div><br>
+
+<h2>Login</h2>
+<div class="row">
+<%= form_with url: '/login', method: :post, local: true do |f| %>
+<div class="card" style="width: 25rem;">
+  <div class="card-body">
+    <div class="mb-3">
+      <br>
+      <ul>
+      <%= f.text_field :email, { class: "form-control", placeholder: 'Enter your email' } %>
+      <strong><%= f.label :email, "Email",  { class: "form-label"} %></strong>
+      </ul>
+      <ul>
+      <%= f.text_field :password, { class: "form-control", placeholder: 'Enter your password' } %>
+      <strong><%= f.label :password, "Password",  { class: "form-label"} %></strong>
+     </ul>
+     <ul>
+      <%= f.submit "Log in", class: "btn btn-primary" %>
+     </ul>
+   </div>
+  </div>
+</div>
+<% end %>
+

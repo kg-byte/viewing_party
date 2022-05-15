@@ -1,8 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'users discover' do
-  let!(:user1) { User.create(name: 'Jeff', email: 'jeff@email.com') }
-  let!(:user2) { User.create(name: 'Amy', email: 'amy@email.com') }
+  let!(:user1) { User.create(name: 'Jeff', email: 'jeff@email.com', password: 'abc', password_confirmation: 'abc') }
 
   before(:each) do
     visit "/users/#{user1.id}/discover"
@@ -49,7 +48,7 @@ RSpec.describe 'users discover' do
       click_button 'Search'
 
       expect(current_path).to eq("/users/#{user1.id}/discover")
-      expect(page).to have_content("Error: No movies found containing 'doggggggg', please try again!.")
+      expect(page).to have_content("Error: No movies found containing 'doggggggg', please try again!")
     end
   end
 end

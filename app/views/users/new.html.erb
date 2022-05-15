@@ -1,11 +1,37 @@
 <%= render partial: 'partials/navbar_default' %>
 <br>
-<h3>Register a New User</h3>
+<div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+  <%= image_tag "movie_party.jpeg", height:280 %>    
+ </div><br>
+
+<h2>Sign up</h2>
+<div class="row">
 <%= form_with model: User.new, local: true do |f| %>
-  <%= f.label "Name:" %><br>
-  <%= f.text_field :name %><br>
-  <%= f.label "Email:" %><br>
-  <%= f.text_field :email %><br>
-  <%= f.submit "Create New User" %>
+<div class="card" style="width: 25rem;">
+  <div class="card-body">
+    <div class="mb-3">
+      <ul>
+      <%= f.text_field :name, { class: "form-control", placeholder: 'Enter your name' } %>
+      <strong><%= f.label :name, "Your Name",  { class: "form-label"} %></strong>
+     </ul>
+      <ul>
+      <%= f.text_field :email, { class: "form-control", placeholder: 'Enter your email' } %>
+      <strong><%= f.label :email, "Your Email",  { class: "form-label"} %></strong>
+      </ul>
+      <ul>
+      <%= f.text_field :password, { class: "form-control", placeholder: 'Enter your password' } %>
+      <strong><%= f.label :password, "Your Password",  { class: "form-label"} %></strong>
+     </ul>
+     <ul>
+      <%= f.text_field :password_confirmation, { class: "form-control", placeholder: 'Enter your password again' } %>
+      <strong><%= f.label :password_confirmation, "Repeat Your Password",  { class: "form-label"} %></strong>
+     </ul>
+  
+     <ul>
+      <%= f.submit "Register", class: "btn btn-primary" %>
+     </ul>
+   </div>
+  </div>
+</div>
 <% end %>
 

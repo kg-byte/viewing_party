@@ -1,19 +1,30 @@
-
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#"></a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a class="nav-link active" aria-current="page" href="/">Welcome Page</a>
-        <a class="nav-link" href="/users">Existing Users</a>
-          <ul class="nav navbar-nav navbar-right">
-            <li>
-              <a href='/users/new' class="btn btn-outline-success my-2 my-sm-0" role='button'>New User</a>
-          </li>
-        </ul>
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <div class="container-fluid">
+        <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/users">Existing Users</a>
+                </li>
+            </ul>
+        </div>
+        <div class="mx-auto order-0">
+            <a class="navbar-brand mx-auto" href="#">Welcome to Viewing Party!</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".dual-collapse2">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+        <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+            <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                    <a href='/login' class="btn btn-outline-secondary my-0 " role='button'>Login</a>
+                </li>
+                <li class="nav-item">
+                    <a href='/users/new' class="btn btn-outline-success my-0 px-2" role='button'>Register</a>
+                </li>
+            </ul>
+        </div>
     </div>
-  </div>
 </nav>

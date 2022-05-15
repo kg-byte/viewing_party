@@ -16,12 +16,30 @@ class UsersController < ApplicationController
   def destroy; end
 
   def create
-    user = User.create(user_params)
+    params = user_params
+    params[:email] = user_params[:email].downcase
+    user = User.create(params)
     if user.save
       redirect_to user_path(user)
+      flash[:success] = "Welcome, #{user.name}!"
     else
       redirect_to '/register'
       flash[:alert] = 'Error: please enter a name and unique email to register.'
+    end
+end
+
+  def login
+    user = User.find_by(email: params[:email])
+    if !user 
+      flash[:error] = "u don goofed try again!"
+      render :login_form
+    elsif user.authenticate(params[:password])
+      session[:user_id] = user.id
+      flash[:success] = "Welcome, #{user.name}!"
+      redirect_to user_path(user)
+    else
+      flash[:error] = "u don goofed try again!"
+      render :login_form
     end
   end
 
@@ -32,6 +50,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :email)
+    params.require(:user).permit(:name, :email,:password, :password_confirmation)
   end
 end
