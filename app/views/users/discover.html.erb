@@ -1,30 +1,52 @@
 
 <%= render partial: 'partials/navbar_default' %>
 <br><br>
-<h1>Discover Movies You'll Enjoy: </h1>
-<br>
-  <ul>
-    <a href="/users/<%= @user.id %>/movies?q=top%20rated" class="btn btn-outline-success my-2 my-sm-0" role='button'>View Top Movies</a>
- </ul>
 
- <%#= form_with url: "/users/#{@user.id}/movies", method: :get, local:true do |f|%>
-  <%#= f.label :keyword%>
-  <%#= f.text_area :keyword%>
-  <%#= f.submit "Searach" %>
- <%# end %>
-<h2>OR</h2>
-<ul>
-<%= form_with url: "/users/#{@user.id}/movies?keyword=keyword", method: :get, local:true do |f|%>
-<div class="card" style="width: 18rem;">
-  <div class="card-body">
-    <div class="mb-3">
-      <%= f.label :Search_by_keyword, { class: "form-label"} %>
-      <%= f.text_field :keyword, { class: "form-control", placeholder: "Enter Keyword Here..." } %>
+<div class="friends">
+  <h1>Friends:</h1>
+  <% if @user.friends ==[] %>
+    <h4>You have not added any friends</h4>
+  <% else %>
+    <% @user.friends.each do |friend| %>
+      <li>
+        <%= friend.name %>
+      </li>
+    <% end %>
+  <% end %>
+  <%= form_with url: "/users/#{@user.id}/friends?email=email", method: :post, local:true do |f|%>
+  <div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <div class="mb-3">
+        <%= f.label :email, "Find a friend by email", { class: "form-label"} %>
+        <%= f.text_field :email, { class: "form-control", placeholder: "Enter Email Here..." } %>
+      </div>
+      <%= f.submit "Add Friend", class: "btn btn-primary" %>
     </div>
-
-    <%= f.submit "Search", class: "btn btn-primary" %>
-
   </div>
+  <% end %>
 </div>
-<% end %>
-</ul>
+
+
+<div class="movies">
+  <h1>Discover Movies You'll Enjoy: </h1>
+  <br>
+    <ul>
+      <a href="/users/<%= @user.id %>/movies?q=top%20rated" class="btn btn-outline-success my-2 my-sm-0" role='button'>View Top Movies</a>
+   </ul>
+  <h2>OR</h2>
+  <ul>
+  <%= form_with url: "/users/#{@user.id}/movies?keyword=keyword", method: :get, local:true do |f|%>
+  <div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <div class="mb-3">
+        <%= f.label :Search_by_keyword, { class: "form-label"} %>
+        <%= f.text_field :keyword, { class: "form-control", placeholder: "Enter Keyword Here..." } %>
+      </div>
+
+      <%= f.submit "Search", class: "btn btn-primary" %>
+
+    </div>
+  </div>
+  <% end %>
+  </ul>
+</div>

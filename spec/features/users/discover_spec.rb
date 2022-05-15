@@ -51,4 +51,10 @@ RSpec.describe 'users discover' do
       expect(page).to have_content("Error: No movies found containing 'doggggggg', please try again!")
     end
   end
+
+  describe 'friends' do 
+    it 'can search and add a friend in the db' do 
+      
+    end
+  end
 end
