@@ -36,7 +36,7 @@ RSpec.describe 'user dashboard' do
         click_on 'Add Friend'
       end
 
-        expect(current_path).to eq "/users/#{user1.id}/discover"
+        expect(current_path).to eq "/users/#{user1.id}"
         expect(page).to have_content("Alicia is added as a friend. Invite them to your next Viewing Party!")
     end
 
@@ -47,7 +47,7 @@ RSpec.describe 'user dashboard' do
         click_on 'Add Friend'
       end
 
-      expect(current_path).to eq "/users/#{user1.id}/discover"
+      expect(current_path).to eq "/users/#{user1.id}"
       expect(page).to have_content("You're already your best friend-no need to make it official!
 ")
     end
@@ -59,7 +59,7 @@ RSpec.describe 'user dashboard' do
         click_on 'Add Friend'
       end
 
-        expect(current_path).to eq "/users/#{user1.id}/discover"
+        expect(current_path).to eq "/users/#{user1.id}"
         expect(page).to have_content("Alicia is already your friend-try a different email!")
       end
 
@@ -70,7 +70,7 @@ RSpec.describe 'user dashboard' do
         click_on 'Add Friend'
       end
       
-      expect(current_path).to eq "/users/#{user1.id}/discover"
+      expect(current_path).to eq "/users/#{user1.id}"
       expect(page).to have_content("Doesn't seem like your friend has an account yet, invite them to join Viewing Party!
 ")
       end
