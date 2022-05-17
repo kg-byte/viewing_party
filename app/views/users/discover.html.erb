@@ -9,7 +9,25 @@
     <ul>
       <a href="/users/<%= @user.id %>/movies?q=top%20rated" class="btn btn-outline-success my-2 my-sm-0" role='button'>View Top Movies</a>
    </ul>
-  <h2>OR</h2>
+   <br>
+  <h2>OR View Movie By Genre</h2>
+  <br>
+     <ul>
+      <%= form_with url: "/users/#{@user.id}/movies?genre=genre", method: :get, local:true do |f|%>
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <div class="mb-3">
+            <%= f.label :genre, "Search by Genre", { class: "form-label"}%><br/>
+            <%= select_tag 'genre', options_for_select([['Comedy', 'comedy'], ['Action', 'action'], ['Romance', 'romance']])  %>
+          </div>
+             <%= f.submit "Go to genre", class: "btn btn-success" %>
+     </div>
+     <% end %>
+     </ul>
+  </div>
+<br>
+  <h2>OR Search Movie By Keyword</h2>
+  <br>
   <ul>
   <%= form_with url: "/users/#{@user.id}/movies?keyword=keyword", method: :get, local:true do |f|%>
   <div class="card" style="width: 18rem;">
@@ -19,7 +37,7 @@
         <%= f.text_field :keyword, { class: "form-control", placeholder: "Enter Keyword Here..." } %>
       </div>
 
-      <%= f.submit "Search", class: "btn btn-primary" %>
+      <%= f.submit "Search", class: "btn btn-success" %>
 
     </div>
   </div>
