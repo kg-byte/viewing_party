@@ -5,7 +5,7 @@ class MovieDetail
     @id = data[:id]
     @title = data[:title]
     @vote_average = data[:vote_average]
-    @runtime = data[:runtime] ? "#{data[:runtime] / 60}hr #{data[:runtime] % 60}min" : nil
+    @runtime = runtime_format(data[:runtime])
     @runtime_min = data[:runtime]
     @genre = data[:genres]
     @summary = data[:overview]
@@ -16,5 +16,9 @@ class MovieDetail
     @genre.map do |genre|
       genre[:name]
     end
+  end
+
+  def runtime_format(runtime)
+    runtime ? "#{runtime / 60}hr #{runtime % 60}min" : nil
   end
 end
