@@ -2,21 +2,17 @@ class ViewingPartyController < ApplicationController
   before_action :set_user, :set_movie
   def new
     @party = Party.new(party_params)
-    user = User.find(params[:user_id])
-    @friends = user.friends
   end
 
   def create
-    if params[:duration_user].to_i >= @movie.runtime_min
       @party = Party.create(party_proper_params)
-
+    if @party.save
       PartyUser.create(user_id: params[:user_id], party_id: @party.id, is_host: true)
       friend_ids.each { |id| PartyUser.create(user_id: id, party_id: @party.id, is_host: false) } if friend_ids
       redirect_to user_path(@user)
     else
       redirect_to new_user_movie_viewing_party_path(@user.id, @movie.id)
-      flash[:alert] =
-        "Error: please enter a duration longer than movie runtime #{@movie.runtime} (#{@movie.runtime_min} mins)!"
+      flash[:alert] = "#{@party.errors.full_messages.to_sentence}"
     end
   end
 

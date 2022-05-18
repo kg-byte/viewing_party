@@ -19,7 +19,7 @@
     </ul>
     <ul>
       <strong><%= f.label :users, "Invite Friends:", { class: "form-label"}%></strong><br/>
-    <% @friends.each do |friend| %>
+    <% @user.friends.each do |friend| %>
     <li>
       <div class="friend-<%=friend.id%>">
       <%= f.label :friend, friend.name %>
@@ -28,8 +28,7 @@
    </li>
     <% end %>
     </ul>
-  
-<br>
+  <br>
     <%= f.submit "Create", class: "btn btn-primary" %>
   </div>
 <% end %>
