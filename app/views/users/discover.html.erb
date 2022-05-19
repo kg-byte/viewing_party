@@ -10,22 +10,21 @@
       <a href="/users/<%= @user.id %>/movies?q=top%20rated" class="btn btn-outline-success my-2 my-sm-0" role='button'>View Top Movies</a>
    </ul>
    <br>
-  <h2>OR View Movie By Genre</h2>
-  <br>
-     <ul>
-      <%= form_with url: "/users/#{@user.id}/movies", method: :get, local:true do |f|%>
-      <div class="card" style="width: 18rem;">
-        <div class="card-body">
-          <div class="mb-3">
-            <%= f.label :genre, "Search by Genre", { class: "form-label"}%><br/>
-            <%= select_tag 'genre', options_for_select([['Comedy', 'comedy'], ['Action', 'action'], ['Romance', 'romance']])  %>
-          </div>
-             <%= f.submit "Go to genre", class: "btn btn-success" %>
-     </div>
-     <% end %>
-     </ul>
+  <!-- <h2>OR View Movie By Genre</h2> -->
+  <!-- <br> -->
+     <!-- <ul> -->
+      <%#= form_with url: "/users/#{@user.id}/movies", method: :get, local:true do |f|%>
+      <!-- <div class="card" style="width: 18rem;"> -->
+        <!-- <div class="card-body"> -->
+          <!-- <div class="mb-3"> -->
+            <%#= f.label :genre, "Search by Genre", { class: "form-label"}%><br/>
+            <%#= select_tag 'genre', options_for_select([['Comedy', 'comedy'], ['Action', 'action'], ['Romance', 'romance']])  %>
+          <!-- </div> -->
+              <%#= f.submit "Go to genre", class: "btn btn-success" %>
+     <!-- </div> -->
+     <%# end %>
+     <!-- </ul> -->
   </div>
-<br>
   <h2>OR Search Movie By Keyword</h2>
   <br>
   <ul>
