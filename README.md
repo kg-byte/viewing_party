@@ -25,6 +25,3 @@ Viewing Part Lite is an application in which users can explore movie options and
 
 Example wireframes to follow are found [here](https://backend.turing.io/module3/projects/viewing_party_lite/wireframes)
 
-
-## Heroku 
-https://agile-beach-26313.herokuapp.com/
