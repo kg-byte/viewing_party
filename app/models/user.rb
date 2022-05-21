@@ -11,4 +11,11 @@ class User < ApplicationRecord
   validates_presence_of :password, require: true
   has_secure_password 
   
+  def past_parties
+    parties.find_all{|party| Time.parse(party.time) < Time.now}
+  end
+
+  def upcoming_parties
+    parties.find_all{|party| Time.parse(party.time) >= Time.now}
+  end
 end
