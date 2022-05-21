@@ -16,6 +16,11 @@ class ViewingPartyController < ApplicationController
     end
   end
 
+  def destroy
+    Party.destroy(params[:id])
+    redirect_to user_path(params[:user_id])
+  end
+
   private
 
   def party_params

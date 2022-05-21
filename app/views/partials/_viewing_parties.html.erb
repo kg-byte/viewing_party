@@ -18,7 +18,8 @@
                          <% party.viewers.each do |viewer| %>
                            <li><%= viewer.name %></li>
                          <% end %>
-                       </ul>
+                       </ul><br>
+                       <%= link_to "Cancel Viewing Party",  user_movie_viewing_party_path(@user,party.movie_id, party.id), method: :delete%>
                      </div>
                   <% else %>
                       <p><%= "Host: #{party.host.name}" %></p>
@@ -32,8 +33,9 @@
                               <li><%= viewer.name %></li>
                             <% end %>
                           <% end %>
-                        </ul>
+                        </ul><br>
                       </div>
+                      <%= link_to "Leave Viewing Party", "/users/#{user.id}/parties/#{party.id}", method: :delete%>
                 <% end %> 
              </ul>
           </div>

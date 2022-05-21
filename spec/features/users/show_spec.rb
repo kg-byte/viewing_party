@@ -27,6 +27,39 @@ RSpec.describe 'user dashboard' do
     expect(current_path).to eq "/users/#{user1.id}/discover"
   end
 
+  it 'has a link to delete a viewing party for host' do 
+    details = JSON.parse(File.read('spec/fixtures/movie_details.json'), symbolize_names: true)
+    allow(TmdbService).to receive(:movie_details).and_return(details)
+    party = create(:party, duration: 200)
+    movie = party.movie
+    PartyUser.create(party: party, user: user1, is_host: true)
+   
+    visit user_path(user1)
+    click_link "Cancel Viewing Party"
+
+    expect(current_path).to eq(user_path(user1.id))
+    expect(current_path).to_not have_content(movie.title)
+  end
+
+  it 'has a link to leave a viewing party for viewer' do 
+    details = JSON.parse(File.read('spec/fixtures/movie_details.json'), symbolize_names: true)
+    allow(TmdbService).to receive(:movie_details).and_return(details)
+    user2=User.create(name: 'Jeff2', email: 'jeff2@email.com', password: 'abc', password_confirmation: 'abc') 
+
+    party = create(:party, duration: 200)
+    movie = party.movie
+    PartyUser.create(party: party, user: user1, is_host: true)
+    PartyUser.create(party: party, user: user2, is_host: false)
+
+    visit user_path(user2)
+    click_link "Leave Viewing Party"
+
+    expect(current_path).to eq(user_path(user2.id))
+    expect(current_path).to_not have_content(movie.title)
+
+
+  end
+
    describe 'friends' do 
       let!(:alicia) { User.create(name: 'Alicia', email: 'alicia@email.com', password: 'abc', password_confirmation: 'abc') }
     it 'can search and add a friend in the db' do 
