@@ -33,7 +33,10 @@
 </div>
 
 <br>
-<h3>Viewing Parties:</h3>
-<%= render partial: 'partials/viewing_parties', :locals =>{:user => @user} %>
+<h3>Upcoming Viewing Parties:</h3>
+<%= render partial: 'partials/viewing_parties', :locals =>{:user => @user, :past => false} %>
+<br>
+<h3>Past Viewing Parties:</h3>
+<%= render partial: 'partials/viewing_parties', :locals =>{:user => @user, :past => true} %>
 
 

@@ -1,5 +1,10 @@
 <div class="row">
-  <% @user.parties.each do |party| %>
+  <% if past == true %>
+    <% parties = @user.past_parties %>
+  <% else %>
+    <% parties = @user.upcoming_parties %>
+  <% end %>
+  <% parties.each do |party| %>
     <div class="card" style="width: 25rem;">
       <div class="card-body"; padding: 10px>
         <div class="mb-3">
@@ -19,7 +24,9 @@
                            <li><%= viewer.name %></li>
                          <% end %>
                        </ul><br>
-                       <%= link_to "Cancel Viewing Party",  user_movie_viewing_party_path(@user,party.movie_id, party.id), method: :delete%>
+                       <% if past == false %>
+                        <%= link_to "Cancel Viewing Party",  user_movie_viewing_party_path(@user,party.movie_id, party.id), method: :delete%>
+                       <% end %>
                      </div>
                   <% else %>
                       <p><%= "Host: #{party.host.name}" %></p>
@@ -35,7 +42,9 @@
                           <% end %>
                         </ul><br>
                       </div>
-                      <%= link_to "Leave Viewing Party", "/users/#{user.id}/parties/#{party.id}", method: :delete%>
+                      <% if past ==false %>
+                        <%= link_to "Leave Viewing Party", "/users/#{user.id}/parties/#{party.id}", method: :delete%>
+                      <% end %>
                 <% end %> 
              </ul>
           </div>

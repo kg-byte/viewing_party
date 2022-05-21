@@ -30,7 +30,7 @@ RSpec.describe 'user dashboard' do
   it 'has a link to delete a viewing party for host' do 
     details = JSON.parse(File.read('spec/fixtures/movie_details.json'), symbolize_names: true)
     allow(TmdbService).to receive(:movie_details).and_return(details)
-    party = create(:party, duration: 200)
+    party = create(:party, duration: 200, time: '209901011930')
     movie = party.movie
     PartyUser.create(party: party, user: user1, is_host: true)
    
@@ -46,7 +46,7 @@ RSpec.describe 'user dashboard' do
     allow(TmdbService).to receive(:movie_details).and_return(details)
     user2=User.create(name: 'Jeff2', email: 'jeff2@email.com', password: 'abc', password_confirmation: 'abc') 
 
-    party = create(:party, duration: 200)
+    party = create(:party, duration: 200, time: '209901011930')
     movie = party.movie
     PartyUser.create(party: party, user: user1, is_host: true)
     PartyUser.create(party: party, user: user2, is_host: false)
