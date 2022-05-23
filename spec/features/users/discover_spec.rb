@@ -4,6 +4,12 @@ RSpec.describe 'users discover' do
   let!(:user1) { User.create(name: 'Jeff', email: 'jeff@email.com', password: 'abc', password_confirmation: 'abc') }
 
   before(:each) do
+    visit '/login'
+
+    fill_in :email, with: 'jeff@email.com'
+    fill_in :password, with: 'abc'
+
+    click_on 'Log in'
     visit "/users/#{user1.id}/discover"
   end
 

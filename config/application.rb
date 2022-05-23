@@ -45,7 +45,7 @@ module ViewingPartyLite
       g.routing_specs false
       g.view_specs false
     end
-
+    config.autoload_paths << "#{Rails.root}/lib"
     # config.generators.system_tests = nil
   end
 end

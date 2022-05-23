@@ -40,5 +40,18 @@ RSpec.describe 'login' do
   	expect(page).to have_content('Incorrect Credentials. Please try again!')
   end 
 
+  it 'requires login after logging out' do 
+    visit '/login'
 
+    fill_in :email, with: 'jeff@email.com'
+    fill_in :password, with: 'abc'
+
+    click_on 'Log in'
+    click_on 'Log Out'
+
+    visit user_path(user1)
+    expect(current_path).to eq('/login')
+    expect(page).to have_content('Your session has expired, please log in again!')
+
+  end
 end

@@ -1,4 +1,4 @@
-<%= render partial: 'partials/navbar_default' %>
+<%= render partial: 'partials/navbar_user', :locals => {:user_id => @user.id} %>
 <br>
 <h4>Start a Viewing Party for <%=@movie.title%></h4>
 <%= form_with url: user_movie_viewing_party_index_path(@user.id, @party.movie_id), method: :post, local:true do |f|%>

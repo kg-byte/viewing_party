@@ -17,6 +17,12 @@ RSpec.describe 'new party page' do
     Friendship.create(user: user1, friend:user3)
     Friendship.create(user: user1, friend:user4)
 
+    visit '/login'
+
+    fill_in :email, with: 'email1@email1.com'
+    fill_in :password, with: 'password'
+
+    click_on 'Log in'
     visit "users/#{user1.id}/movies/545611/viewing_party/new"
   end
 

@@ -1,5 +1,6 @@
 class MoviesController < ApplicationController
-  before_action :set_user
+  include ControllerHelper
+  before_action :set_user_uid, :remember_me
   def index
     @movies = MovieFacade.top20 if params[:q] == 'top rated'
     if params[:keyword]
@@ -19,9 +20,5 @@ class MoviesController < ApplicationController
     @data = MovieFacade.movie_data(params[:id])
   end
 
-  private
 
-  def set_user
-    @user = User.find(params[:user_id])
-  end
 end

@@ -11,6 +11,12 @@ RSpec.describe 'movie details page' do
     review = JSON.parse(File.read('spec/fixtures/movie_review.json'), symbolize_names: true)
     allow(TmdbService).to receive(:movie_review).and_return(review)
 
+    visit '/login'
+
+    fill_in :email, with: 'jeff@email.com'
+    fill_in :password, with: 'abc'
+
+    click_on 'Log in'
     visit "users/#{user.id}/movies/545611"
   end
 

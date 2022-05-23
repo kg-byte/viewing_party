@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[update destroy show discover]
-
+  include ControllerHelper
+  before_action :set_user, only: %i[show discover]
+  before_action :remember_me, only: %i[show diescover]
   def index
     @users = User.all
   end
@@ -11,22 +12,19 @@ class UsersController < ApplicationController
 
   def show; end
 
-  def update; end
-
-  def destroy; end
-
   def create
     params = user_params
     params[:email] = user_params[:email].downcase
     user = User.create(params)
     if user.save
-      redirect_to user_path(user) ##here for session
+      cookies.encrypted[:remember_me]={value: 'hello', expires: 1.week}
+      redirect_to user_path(user) 
       flash[:success] = "Welcome, #{user.name}!"
     else
       redirect_to '/register'
       flash[:alert] = "#{user.errors.full_messages.to_sentence}"
     end
-end
+  end
 
   def login
     user = User.find_by(email: params[:email])
@@ -34,19 +32,21 @@ end
       flash[:error] = "Incorrect Credentials. Please try again!"
       render :login_form
     elsif user.authenticate(params[:password])
-      session[:user_id] = user.id
+      cookies.encrypted[:remember_me]={value: 'hello', expires: 1.week}
       flash[:success] = "Welcome, #{user.name}!"
-      redirect_to user_path(user) ##here for session
+      redirect_to user_path(user) 
     end
+  end
+
+  def logout
+    cookies.delete :remember_me
+    redirect_to root_path
+    flash[:success] = "You have successfully logged out!"
   end
 
   private
 
-  def set_user
-    @user = User.find(params[:id])
-  end
-
   def user_params
-    params.require(:user).permit(:name, :email,:password, :password_confirmation)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
 end
