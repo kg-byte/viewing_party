@@ -3,7 +3,7 @@
         <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="/">Home</a>
+                    <a class="nav-link" href="/users/<%=@user.id%>">Home</a>
                 </li>
                   <li>
                     <a href="/users/<%=user_id%>/discover" class="btn btn-outline-success my-2 my-sm-0" role='button'>Discover Movies</a>
@@ -18,6 +18,9 @@
         </div>
         <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
             <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                    <a href='/logout' class="btn btn-outline-secondary my-0 " role='button'>Log Out</a>
+                    </li>
             </ul>
         </div>
     </div>

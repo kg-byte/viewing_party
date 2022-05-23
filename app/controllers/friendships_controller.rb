@@ -1,4 +1,5 @@
 class FriendshipsController < ApplicationController
+before_action :remember_me
 
   def create
   	user = User.find(params[:user_id])
@@ -16,4 +17,11 @@ class FriendshipsController < ApplicationController
   	  redirect_to "/users/#{params[:user_id]}"
   end
 
+private 
+  def remember_me
+    if !cookies[:remember_me]
+      redirect_to '/login'
+      flash[:notice] = 'Please log in again!'
+    end
+  end
 end

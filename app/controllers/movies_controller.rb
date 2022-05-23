@@ -1,5 +1,5 @@
 class MoviesController < ApplicationController
-  before_action :set_user
+  before_action :set_user, :remember_me
   def index
     @movies = MovieFacade.top20 if params[:q] == 'top rated'
     if params[:keyword]
@@ -23,5 +23,12 @@ class MoviesController < ApplicationController
 
   def set_user
     @user = User.find(params[:user_id])
+  end
+
+  def remember_me
+    if !cookies[:remember_me]
+      redirect_to '/login'
+      flash[:notice] = 'Please log in again!'
+    end
   end
 end

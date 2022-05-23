@@ -4,7 +4,12 @@ RSpec.describe 'user dashboard' do
   let!(:user1) { User.create(name: 'Jeff', email: 'jeff@email.com', password: 'abc', password_confirmation: 'abc') }
 
   before(:each) do
-    visit user_path(user1)
+    visit '/login'
+
+    fill_in :email, with: 'jeff@email.com'
+    fill_in :password, with: 'abc'
+
+    click_on 'Log in'
   end
 
   it 'shows page title with user name' do
