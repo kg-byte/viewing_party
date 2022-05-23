@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[update destroy show discover]
+  before_action :set_user, only: %i[show discover]
   before_action :remember_me, only: %i[show diescover]
   def index
     @users = User.all
@@ -9,12 +9,7 @@ class UsersController < ApplicationController
 
   def discover; end
 
-
   def show; end
-
-  def update; end
-
-  def destroy; end
 
   def create
     params = user_params
@@ -53,7 +48,7 @@ end
   def remember_me
     if !cookies[:remember_me]
       redirect_to '/login'
-      flash[:notice] = 'Please log in again!'
+      flash[:notice] = 'Your session has expired, please log in again!'
     end
   end
 

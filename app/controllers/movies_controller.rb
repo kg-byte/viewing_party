@@ -20,7 +20,6 @@ class MoviesController < ApplicationController
   end
 
   private
-
   def set_user
     @user = User.find(params[:user_id])
   end
@@ -28,7 +27,7 @@ class MoviesController < ApplicationController
   def remember_me
     if !cookies[:remember_me]
       redirect_to '/login'
-      flash[:notice] = 'Please log in again!'
+      flash[:notice] = 'Your session has expired, please log in again!'
     end
   end
 end

@@ -21,7 +21,7 @@ private
   def remember_me
     if !cookies[:remember_me]
       redirect_to '/login'
-      flash[:notice] = 'Please log in again!'
+      flash[:notice] = 'Your session has expired, please log in again!'
     end
   end
 end
