@@ -18,6 +18,7 @@ RSpec.describe 'user dashboard' do
   end
 
   it 'has a button to discover movies' do
+  
     expect(page).to have_link('Discover Movies')
   end
 
