@@ -24,9 +24,22 @@ RSpec.describe 'new user page' do
 
     fill_in 'user[name]', with: 'Greg2'
     fill_in 'user[email]', with: 'greg@email.com'
+    fill_in 'user[password]', with: 'greg1012'
+    fill_in 'user[password_confirmation]', with: 'greg1012'
     click_button('Register')
 
     expect(current_path).to eq('/register')
-    expect(page).to have_content('Error: please enter a name and unique email to register.')
+    expect(page).to have_content('Email has already been taken')
+  end
+
+  it 'shows error message when password and password_confirmation do not match' do
+    fill_in 'user[name]', with: 'Greg2'
+    fill_in 'user[email]', with: 'greg@email.com'
+    fill_in 'user[password]', with: 'greg1012'
+    fill_in 'user[password_confirmation]', with: 'greg1011'
+    click_button('Register')
+
+    expect(current_path).to eq('/register')
+    expect(page).to have_content("Password confirmation doesn't match Password")
   end
 end

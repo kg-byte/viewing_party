@@ -20,7 +20,7 @@ class UsersController < ApplicationController
     params[:email] = user_params[:email].downcase
     user = User.create(params)
     if user.save
-      redirect_to user_path(user)
+      redirect_to user_path(user) ##here for session
       flash[:success] = "Welcome, #{user.name}!"
     else
       redirect_to '/register'
@@ -36,7 +36,7 @@ end
     elsif user.authenticate(params[:password])
       session[:user_id] = user.id
       flash[:success] = "Welcome, #{user.name}!"
-      redirect_to user_path(user)
+      redirect_to user_path(user) ##here for session
     end
   end
 
