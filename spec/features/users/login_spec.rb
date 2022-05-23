@@ -24,7 +24,7 @@ RSpec.describe 'login' do
   	click_on 'Log in'
 
   	expect(current_path).to eq('/login')
-  	expect(page).to have_content('u don goofed try again!')
+  	expect(page).to have_content('Incorrect Credentials. Please try again!')
   end 
 
 
@@ -37,7 +37,7 @@ RSpec.describe 'login' do
   	click_on 'Log in'
 
   	expect(current_path).to eq('/login')
-  	expect(page).to have_content('u don goofed try again!')
+  	expect(page).to have_content('Incorrect Credentials. Please try again!')
   end 
 
 

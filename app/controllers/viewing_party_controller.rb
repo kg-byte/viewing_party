@@ -4,6 +4,7 @@ class ViewingPartyController < ApplicationController
     @party = Party.new(party_params)
   end
 
+
   def create
       @party = Party.create(party_proper_params)
     if @party.save
