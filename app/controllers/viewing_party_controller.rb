@@ -1,5 +1,7 @@
 class ViewingPartyController < ApplicationController
-  before_action :set_user, :set_movie
+  include ControllerHelper
+
+  before_action :set_user_uid, :set_movie, :remember_me
   def new
     @party = Party.new(party_params)
   end
@@ -39,10 +41,6 @@ class ViewingPartyController < ApplicationController
   def time_format
     params['time(2i)'] = '0' + params['time(2i)'] if params['time(2i)'].length == 1
     time_string = params['time(1i)'] + params['time(2i)'] + params['time(3i)'] + params['time(4i)'] + params['time(3i)']
-  end
-
-  def set_user
-    @user = User.find(params[:user_id])
   end
 
   def set_movie

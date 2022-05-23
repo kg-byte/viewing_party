@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  include ControllerHelper
   before_action :set_user, only: %i[show discover]
   before_action :remember_me, only: %i[show diescover]
   def index
@@ -23,7 +24,7 @@ class UsersController < ApplicationController
       redirect_to '/register'
       flash[:alert] = "#{user.errors.full_messages.to_sentence}"
     end
-end
+  end
 
   def login
     user = User.find_by(email: params[:email])
@@ -45,18 +46,7 @@ end
 
   private
 
-  def remember_me
-    if !cookies[:remember_me]
-      redirect_to '/login'
-      flash[:notice] = 'Your session has expired, please log in again!'
-    end
-  end
-
-  def set_user
-    @user = User.find(params[:id])
-  end
-
   def user_params
-    params.require(:user).permit(:name, :email,:password, :password_confirmation)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
 end

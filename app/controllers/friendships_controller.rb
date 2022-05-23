@@ -1,5 +1,6 @@
 class FriendshipsController < ApplicationController
-before_action :remember_me
+  include ControllerHelper
+  before_action :remember_me
 
   def create
   	user = User.find(params[:user_id])
@@ -17,11 +18,4 @@ before_action :remember_me
   	  redirect_to "/users/#{params[:user_id]}"
   end
 
-private 
-  def remember_me
-    if !cookies[:remember_me]
-      redirect_to '/login'
-      flash[:notice] = 'Your session has expired, please log in again!'
-    end
-  end
 end
