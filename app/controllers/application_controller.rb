@@ -16,6 +16,7 @@ class ApplicationController < ActionController::Base
        flash[:success] = "Your session has expired, please log in again!"
      elsif current_admin?
        render file: "/public/404"
+       flash[:alert] = 'You are logged in as admin.'
      end
   end
 end

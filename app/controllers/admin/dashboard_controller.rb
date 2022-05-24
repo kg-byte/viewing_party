@@ -8,5 +8,6 @@ class Admin::DashboardController < ApplicationController
 private
   def require_admin
   	render file: "/public/404" unless current_admin?
+    flash[:alert] = 'You do not have admin access.' unless current_admin?
   end
 end
