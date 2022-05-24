@@ -21,7 +21,7 @@
     <tbody>
     <tr>
       <th scope="row"><%= index+1 %></th>
-      <td> <%= link_to movie.title, user_movie_path(@user.id, movie.id)  %></td>
+      <td> <%= link_to movie.title, dashboard_movie_path(movie.id)  %></td>
       <td> <%= movie.vote_average %></td>
     </div>
     </tbody>

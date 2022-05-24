@@ -16,7 +16,7 @@ RSpec.describe 'Welcomes', type: :feature do
 
       click_on 'Register'
 
-      expect(current_path).to eq new_user_path
+      expect(current_path).to eq '/register'
     end
 
     it 'has button to login' do 

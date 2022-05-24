@@ -12,7 +12,7 @@
              <img src= <%= party.movie_poster %> alt="" style="width:100%;height:100%;">
               <br>
               <ul>
-                 <h4><%= link_to "#{party.movie_title}", user_movie_path(@user.id, party.movie_id)%></h4>
+                 <h4><%= link_to "#{party.movie_title}", dashboard_movie_path(party.movie_id)%></h4>
                  <p><%= "Date: #{party.movie_date}" %> <%= "Time: #{party.movie_time}" %></p>
 
                  <% if party.host.id == @user.id %>
@@ -25,7 +25,7 @@
                          <% end %>
                        </ul><br>
                        <% if past == false %>
-                        <%= link_to "Cancel Viewing Party",  user_movie_viewing_party_path(@user,party.movie_id, party.id), method: :delete%>
+                        <%= link_to "Cancel Viewing Party",  dashboard_movie_viewing_party_path(party.movie_id, party.id), method: :delete%>
                        <% end %>
                      </div>
                   <% else %>

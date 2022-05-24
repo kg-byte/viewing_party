@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
         session[:user_id]={value: user.id, expires: 1.week}
         flash[:success] = "Welcome, #{user.name}!"
       if user.default?
-        redirect_to user_path(user) 
+        redirect_to dashboard_path
       elsif user.admin?
         redirect_to '/admin/dashboard'
       end
@@ -17,7 +17,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    session[:user_id] = nil 
+    session.destroy
     redirect_to '/login'
     flash[:success] = "You have successfully logged out!"
   end

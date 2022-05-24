@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   include ControllerHelper
-  before_action :set_user, :logged_in?, only: %i[show discover]
+  before_action :set_user, :require_user, only: %i[show discover]
 
   def new; end
 
@@ -14,7 +14,7 @@ class UsersController < ApplicationController
     user = User.create(params)
     if user.save
       session[:user_id]={value: user.id, expires: 1.week}
-      redirect_to user_path(user) 
+      redirect_to dashboard_path
       flash[:success] = "Welcome, #{user.name}!"
     else
       redirect_to '/register'
@@ -25,6 +25,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    params.permit(:name, :email, :password, :password_confirmation)
   end
 end

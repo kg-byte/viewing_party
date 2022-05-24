@@ -17,7 +17,7 @@ RSpec.describe 'movie details page' do
     fill_in :password, with: 'abc'
 
     click_on 'Log in'
-    visit "users/#{user.id}/movies/545611"
+    visit "/dashboard/movies/545611"
   end
 
   it 'lists movie details' do
@@ -44,6 +44,6 @@ RSpec.describe 'movie details page' do
   it 'has a button to create a viewing party' do
     click_on 'Start a Viewing Party'
 
-    expect(current_path).to eq new_user_movie_viewing_party_path(user.id, 545_611)
+    expect(current_path).to eq new_dashboard_movie_viewing_party_path(545611)
   end
 end
