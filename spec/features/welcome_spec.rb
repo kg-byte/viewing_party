@@ -7,16 +7,9 @@ RSpec.describe 'Welcomes', type: :feature do
 
       expect(page).to have_content('Welcome to Viewing Party!')
       expect(page).to have_link 'Register'
-      expect(page).to have_link 'Existing Users'
       expect(page).to have_link 'Home'
     end
 
-    it 'has links to user index page' do
-      visit root_path
-      click_link 'Existing Users'
-
-      expect(current_path).to eq users_path
-    end
 
     it 'has button to new user page' do
       visit root_path

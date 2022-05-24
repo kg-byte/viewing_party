@@ -14,6 +14,11 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :admin do
+    get '/dashboard', to: 'dashboard#index'
+  end
+    delete '/admin/viewing_party/:id', to:'viewing_party#destroy'
+
   get 'register', to: 'users#new'
   get 'login', to: 'sessions#login_form'
   post 'login', to: 'sessions#create'

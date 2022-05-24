@@ -6,7 +6,6 @@ class ViewingPartyController < ApplicationController
     @party = Party.new(party_params)
   end
 
-
   def create
       @party = Party.create(party_proper_params)
     if @party.save
@@ -20,8 +19,13 @@ class ViewingPartyController < ApplicationController
   end
 
   def destroy
-    Party.destroy(params[:id])
-    redirect_to user_path(params[:user_id])
+      Party.destroy(params[:id])
+      flash[:notice] = 'You have successfully deleted the viewing party'
+    if params[:user_id]
+      redirect_to user_path(params[:user_id])
+    else
+      redirect_to '/admin/dashboard/all_parties'
+    end
   end
 
   private
