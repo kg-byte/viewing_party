@@ -11,8 +11,9 @@
               <ul>
                  <h4><%= party.movie_title%></h4>
                  <p><%= "Date: #{party.movie_date}" %> <%= "Time: #{party.movie_time}" %></p>
-
-                      <p><%= "Host: #{party.host.name}" %></p>
+                      <% if party.host %>
+                        <p>Host: <%= party.host.name %></p>
+                      <% end %>
                       <div class=<%= "movie_#{party.movie_id}_viewers" %>>
                         <p><%= "Viewers:" %></p>
                         <ul>

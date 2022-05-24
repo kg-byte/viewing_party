@@ -14,8 +14,8 @@
               <ul>
                  <h4><%= link_to "#{party.movie_title}", dashboard_movie_path(party.movie_id)%></h4>
                  <p><%= "Date: #{party.movie_date}" %> <%= "Time: #{party.movie_time}" %></p>
-
-                 <% if party.host.id == @user.id %>
+                
+                 <% if party.host && party.host.id == @user.id %>
                      <p><strong><%= "You are hosting!"%></strong></p>
                      <div class=<%= "movie_#{party.movie_id}_viewers" %>>
                        <p>Friends Invited:</p>
@@ -29,7 +29,9 @@
                        <% end %>
                      </div>
                   <% else %>
-                      <p><%= "Host: #{party.host.name}" %></p>
+                       <% if party.host %>
+                      <p> Host:<%=party.host.name %></p>
+                       <% end %>
                       <div class=<%= "movie_#{party.movie_id}_viewers" %>>
                         <p><%= "Viewers:" %></p>
                         <ul>

@@ -16,8 +16,8 @@ class MovieFacade
   end
 
   def self.search_movies_data(keyword)
-    @first_20 ||= TmdbService.search(keyword)
-    @second_20 ||= TmdbService.search(keyword, 2)
+    @first_20 = TmdbService.search(keyword)
+    @second_20 = TmdbService.search(keyword, 2)
   end
 
   def self.movie_data(movie_id)
