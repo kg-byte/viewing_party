@@ -13,9 +13,12 @@ class ApplicationController < ActionController::Base
   def require_user
      if !current_user 
        redirect_to '/login'
-       flash[:success] = "Your session has expired, please log in again!"
-     elsif current_admin?
-       render file: "/public/404"
+       flash[:success] = "Please log in to proceed!"
      end
+  end
+
+  def require_admin
+    render file: "/public/404" unless current_admin?
+    flash[:alert] = 'You do not have admin access.' unless current_admin?
   end
 end

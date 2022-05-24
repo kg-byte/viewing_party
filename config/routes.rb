@@ -17,8 +17,9 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get '/dashboard', to: 'dashboard#index'
+    get '/users/:id', to: 'users#show'
+    delete '/viewing_party/:id', to:'viewing_party#destroy'
   end
-    delete '/admin/viewing_party/:id', to:'viewing_party#destroy'
 
   get 'register', to: 'users#new'
   get 'login', to: 'sessions#login_form'

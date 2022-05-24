@@ -55,6 +55,21 @@ RSpec.describe 'login' do
 
   end
 
+  it 'does not allow user to access admin dashboard' do 
+    visit '/login'
+
+    fill_in :email, with: 'jeff@email.com'
+    fill_in :password, with: 'abc'
+
+    click_on 'Log in'
+
+    visit '/admin/dashboard'
+    visit '/admin/dashboard'
+
+
+    expect(page).to have_content('You do not have admin access.')
+  end
+
   it 'allows admin to view admin dashboard' do 
     # allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
     details = JSON.parse(File.read('spec/fixtures/movie_details.json'), symbolize_names: true)
@@ -86,9 +101,30 @@ RSpec.describe 'login' do
     fill_in :password, with: 'abc'
 
     click_on 'Log in'
+ 
     click_on 'Delete Viewing Party'
+
+    
     expect(current_path).to eq('/admin/dashboard')
     expect(page).to_not have_content(movie.title)
+  end
+
+   it 'allows admin to view user dashboard using email link' do 
+    details = JSON.parse(File.read('spec/fixtures/movie_details.json'), symbolize_names: true)
+    allow(TmdbService).to receive(:movie_details).and_return(details)
+    party = create(:party, duration: 200, time: '209901011930') 
+    movie = party.movie
+    PartyUser.create(party: party, user: user, is_host: true)
+
+    visit '/login'
+    fill_in :email, with: 'admin@email.com'
+    fill_in :password, with: 'abc'
+
+    click_on 'Log in'
+    click_on 'jeff@email.com'
+    
+    expect(current_path).to eq("/admin/users/#{user.id}")
+    expect(page).to have_content("Jeff's Dashboard")
   end
 
 end

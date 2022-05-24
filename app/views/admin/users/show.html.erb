@@ -1,11 +1,11 @@
-<%= render partial: 'partials/navbar_user' %>
+<%= render partial: 'partials/navbar_admin_user',:locals => {:user_id => @user.id}%>
 <br>
 
 
 <div class="friends">
-  <h3>My Friends:</h3>
+  <h3><%= @user.name %>'s Friends:</h3>
   <% if @user.friends ==[] && @user.inverse_friends ==[]%>
-    <h4>You have not added any friends</h4>
+    <h4>User has not added any friends</h4>
   <% elsif @user.friends != [] %>
     <% @user.friends.each do |friend| %>
       <li>
@@ -19,18 +19,7 @@
 	    </li>
 	  <% end %>
   <% end %>
-  <%= form_with url: "/dashboard/friendships", method: :post, local:true do |f|%>
-  <div class="card" style="width: 18rem;">
-    <div class="card-body">
-      <div class="mb-3">
-        <%= f.label :email, "Find a friend by email", { class: "form-label"} %>
-        <%= f.text_field :email, { class: "form-control", placeholder: "Enter Email Here..." } %>
-      </div>
-      <%= f.submit "Add Friend", class: "btn btn-primary" %>
-    </div>
-  </div>
-  <% end %>
-</div>
+  
 
 <br>
 <h3>Upcoming Viewing Parties:</h3>

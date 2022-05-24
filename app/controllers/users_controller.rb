@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   include ControllerHelper
-  before_action :set_user, :require_user, only: %i[show discover]
+  before_action :set_user, :require_user, only: %i[show]
 
   def new; end
 

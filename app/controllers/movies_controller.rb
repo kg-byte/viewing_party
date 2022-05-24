@@ -1,6 +1,5 @@
 class MoviesController < ApplicationController
   include ControllerHelper
-  before_action :set_user, :require_user
   def index
     @movies = MovieFacade.top20 if params[:q] == 'top rated'
     if params[:keyword]
@@ -10,9 +9,6 @@ class MoviesController < ApplicationController
         redirect_to "/dashboard/discover"
         flash[:alert] = "Error: #{@movies}, please try again!"
       end
-    # elsif params[:genre] == 'genre'
-    #   @movies = MovieFacade.search_by_genre(params[:genre])
-    #   @genre = params[:genre]
     end
   end
 
