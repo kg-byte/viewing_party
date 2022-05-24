@@ -1,4 +1,8 @@
-<%= render partial: 'partials/navbar_user'%>
+<% if @user %>
+  <%= render partial: 'partials/navbar_user'%>
+<% else %>
+  <%= render partial: 'partials/navbar_welcome'%>
+<% end %>
 <br>
 <ul class="nav navbar-nav navbar-right">
     <li>

@@ -1,9 +1,10 @@
-<%= render partial: 'partials/navbar_default' %>
+<%= render partial: 'partials/navbar_welcome' %>
 <br>
 <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
   <%= image_tag "welcome_back.jpeg", height:200 %>    
- </div><br>
-
+ </div><br><br>
+<h4>Don't Have an account yet? <%= link_to 'Register as New User', '/register' %></h4>
+<br>
 <h2>Login</h2>
 <div class="row">
 <%= form_with url: '/login', method: :post, local: true do |f| %>
@@ -26,4 +27,3 @@
   </div>
 </div>
 <% end %>
-

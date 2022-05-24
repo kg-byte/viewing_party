@@ -1,22 +1,28 @@
-
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
     <div class="container-fluid">
         <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="/">Home</a>
+                    <a class="nav-link" href="/admin/dashboard">Return to Admin Dashboard</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/admin/users/<%=user_id%>">User Dashboard</a>
                 </li>
             </ul>
         </div>
         <div class="mx-auto order-0">
-            <a class="navbar-brand mx-auto" href="#">Viewing Party</a>
+            <a class="navbar-brand mx-auto" href="#"><%=@user.name %>'s Dashboard</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".dual-collapse2">
                 <span class="navbar-toggler-icon"></span>
             </button>
         </div>
         <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
             <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                    <a href='/logout' class="btn btn-outline-secondary my-0 " role='button'>Log Out</a>
+                    </li>
             </ul>
         </div>
     </div>
 </nav>
+

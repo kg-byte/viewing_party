@@ -5,10 +5,8 @@
     <thead>
       <tr>
         <th scope="col">#</th>
-        <th scope="col">User Name</th>
         <th scope="col">Email</th>
         <th scope="col">Created at</th>
-        <th scope="col">Friends</th>
       </tr>
     </thead>
     <% @users.each_with_index do |user, index|%>
@@ -16,17 +14,8 @@
     <tbody>
     <tr>
       <th scope="row"><%= index+1 %></th>
-      <td> <%= user.name %></td>
-      <td><%=  user.email %></td>
+      <td><%=  link_to user.email, "/admin/users/#{user.id}" %></td>
       <td> <%= user.created_at.strftime('%b %-d, %Y') %></td>
-      <td> <%user.friends.each_with_index do |friend, index| %>
-            <% if index != user.friends.count-1 %>
-             <%= friend.name %>,
-            <% else %>
-            <%= friend.name %>
-            <% end %>
-          <% end %>
-      </td>
     </div>
     </tbody>
     <% end %>
