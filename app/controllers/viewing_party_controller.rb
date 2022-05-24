@@ -1,7 +1,7 @@
 class ViewingPartyController < ApplicationController
   include ControllerHelper
 
-  before_action :set_user_uid, :set_movie
+  before_action :set_user_uid, :set_movie, :logged_in?
   def new
     @party = Party.new(party_params)
   end
