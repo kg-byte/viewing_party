@@ -1,10 +1,6 @@
 class UsersController < ApplicationController
   include ControllerHelper
   before_action :set_user, only: %i[show discover]
-  before_action :remember_me, only: %i[show diescover]
-  def index
-    @users = User.all
-  end
 
   def new; end
 
@@ -17,7 +13,7 @@ class UsersController < ApplicationController
     params[:email] = user_params[:email].downcase
     user = User.create(params)
     if user.save
-      cookies.encrypted[:remember_me]={value: 'hello', expires: 1.week}
+      session[:user_id]={value: user.id, expires: 1.week}
       redirect_to user_path(user) 
       flash[:success] = "Welcome, #{user.name}!"
     else

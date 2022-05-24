@@ -1,7 +1,7 @@
 class ViewingPartyController < ApplicationController
   include ControllerHelper
 
-  before_action :set_user_uid, :set_movie, :remember_me
+  before_action :set_user_uid, :set_movie
   def new
     @party = Party.new(party_params)
   end
@@ -24,7 +24,7 @@ class ViewingPartyController < ApplicationController
     if params[:user_id]
       redirect_to user_path(params[:user_id])
     else
-      redirect_to '/admin/dashboard/all_parties'
+      redirect_to '/admin/dashboard'
     end
   end
 

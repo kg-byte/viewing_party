@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
   def create
     user = User.find_by(email: params[:email])   
     if user && user.authenticate(params[:password]) 
-        cookies.encrypted[:remember_me]={value: 'hello', expires: 1.week}
+        session[:user_id]={value: user.id, expires: 1.week}
         flash[:success] = "Welcome, #{user.name}!"
       if user.default?
         redirect_to user_path(user) 
@@ -17,8 +17,8 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    cookies.delete :remember_me
-    redirect_to root_path
+    session[:user_id] = nil 
+    redirect_to '/login'
     flash[:success] = "You have successfully logged out!"
   end
 
