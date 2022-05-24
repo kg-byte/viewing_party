@@ -12,7 +12,7 @@ RSpec.describe 'login' do
 
   	click_on 'Log in'
 
-  	expect(current_path).to eq(user_path(user))
+  	expect(current_path).to eq(dashboard_path)
 
   end
 
@@ -51,7 +51,7 @@ RSpec.describe 'login' do
     click_on 'Log Out'
 
     expect(current_path).to eq('/login')
-    visit user_path(user)
+    visit dashboard_path
 
   end
 

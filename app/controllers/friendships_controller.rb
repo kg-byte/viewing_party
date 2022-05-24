@@ -3,19 +3,18 @@ class FriendshipsController < ApplicationController
   before_action :require_user
 
   def create
-  	user = User.find(params[:user_id])
   	friend = User.find_by(email: params[:email])
   	if !friend 
   		flash[:alert] = "Doesn't seem like your friend has an account yet, invite them to join Viewing Party!"
-  	elsif friend.id == params[:user_id].to_i
+  	elsif friend.id == current_user.id
   	  flash[:alert] = "You're already your best friend-no need to make it official!"
-  	elsif user.friends.include?(friend)
+  	elsif current_user.friends.include?(friend)
   	  flash[:alert] = "#{friend.name} is already your friend-try a different email!"
   	else
   	  flash[:success] = "#{friend.name} is added as a friend. Invite them to your next Viewing Party!"
   	  Friendship.create(user_id: params[:user_id], friend_id: friend.id)
   	end  
-  	  redirect_to "/users/#{params[:user_id]}"
+  	  redirect_to "/dashboard"
   end
 
 end

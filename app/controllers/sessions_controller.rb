@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
         session[:user_id]={value: user.id, expires: 1.week}
         flash[:success] = "Welcome, #{user.name}!"
       if user.default?
-        redirect_to user_path(user) 
+        redirect_to dashboard_path
       elsif user.admin?
         redirect_to '/admin/dashboard'
       end

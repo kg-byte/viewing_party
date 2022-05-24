@@ -23,7 +23,7 @@ RSpec.describe 'new party page' do
     fill_in :password, with: 'password'
 
     click_on 'Log in'
-    visit "users/#{user1.id}/movies/545611/viewing_party/new"
+    visit "/dashboard/movies/545611/viewing_party/new"
   end
 
   it 'can create new party' do
@@ -32,7 +32,7 @@ RSpec.describe 'new party page' do
     end
     click_on 'Create'
 
-    expect(current_path).to eq(user_path(user1))
+    expect(current_path).to eq(dashboard_path)
     expect(page).to have_content("#{user1.name}'s Dashboard")
   end
 
@@ -40,7 +40,7 @@ RSpec.describe 'new party page' do
     fill_in :duration_user, with: 80
     click_button('Create')
 
-    expect(current_path).to eq("/users/#{user1.id}/movies/545611/viewing_party/new")
+    expect(current_path).to eq("/dashboard/movies/545611/viewing_party/new")
     expect(page).to have_content('Duration cannot be shorter than movie runtime')
   end
 end

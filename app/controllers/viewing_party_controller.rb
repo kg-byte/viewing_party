@@ -1,7 +1,7 @@
 class ViewingPartyController < ApplicationController
   include ControllerHelper
 
-  before_action :set_user_uid, :set_movie, :require_user
+  before_action :set_user, :set_movie, :require_user
   def new
     @party = Party.new(party_params)
   end
@@ -11,9 +11,9 @@ class ViewingPartyController < ApplicationController
     if @party.save
       PartyUser.create(user_id: params[:user_id], party_id: @party.id, is_host: true)
       friend_ids.each { |id| PartyUser.create(user_id: id, party_id: @party.id, is_host: false) } if friend_ids
-      redirect_to user_path(@user)
+      redirect_to dashboard_path
     else
-      redirect_to new_user_movie_viewing_party_path(@user.id, @movie.id)
+      redirect_to new_dashboard_movie_viewing_party_path(@movie.id)
       flash[:alert] = "#{@party.errors.full_messages.to_sentence}"
     end
   end
