@@ -50,7 +50,6 @@ RSpec.describe 'login' do
     click_on 'Log in'
     click_on 'Log Out'
 
-  
     expect(current_path).to eq('/login')
     visit user_path(user)
 
@@ -91,8 +90,6 @@ RSpec.describe 'login' do
     click_on 'Delete Viewing Party'
     expect(current_path).to eq('/admin/dashboard')
     expect(page).to_not have_content(movie.title)
-
   end
-
 
 end
