@@ -19,13 +19,8 @@ class ViewingPartyController < ApplicationController
   end
 
   def destroy
-      Party.destroy(params[:id])
-      flash[:notice] = 'You have successfully deleted the viewing party'
-    if params[:user_id]
-      redirect_to user_path(params[:user_id])
-    else
-      redirect_to '/admin/dashboard'
-    end
+    Party.destroy(params[:id])
+    flash[:notice] = 'You have successfully deleted the viewing party'
+    redirect_to dashboard_path
   end
-
 end

@@ -86,7 +86,10 @@ RSpec.describe 'login' do
     fill_in :password, with: 'abc'
 
     click_on 'Log in'
+ 
     click_on 'Delete Viewing Party'
+
+    
     expect(current_path).to eq('/admin/dashboard')
     expect(page).to_not have_content(movie.title)
   end

@@ -43,7 +43,7 @@ RSpec.describe 'user dashboard' do
     visit dashboard_path
     click_link "Cancel Viewing Party"
 
-    expect(current_path).to eq('/admin/dashboard')
+    expect(current_path).to eq('/dashboard')
     expect(current_path).to_not have_content(movie.title)
   end
 
