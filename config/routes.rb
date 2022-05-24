@@ -7,15 +7,20 @@ Rails.application.routes.draw do
 
   delete 'users/:user_id/parties/:party_id', to: 'party_users#destroy'
   get 'users/:id/discover', to: 'users#discover'
-  resources :users, only: %i[new index show create] do
+  resources :users, only: %i[new show create] do
     resources :friendships, only: %i[create]
     resources :movies, only: %i[index show] do
       resources :viewing_party, only: %i[new create destroy]
     end
   end
 
+  namespace :admin do
+    get '/dashboard', to: 'dashboard#index'
+  end
+    delete '/admin/viewing_party/:id', to:'viewing_party#destroy'
+
   get 'register', to: 'users#new'
-  get 'login', to: 'users#login_form'
-  post 'login', to: 'users#login'
-  get 'logout', to: 'users#logout'
+  get 'login', to: 'sessions#login_form'
+  post 'login', to: 'sessions#create'
+  get 'logout', to: 'sessions#destroy'
 end

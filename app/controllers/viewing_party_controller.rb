@@ -1,11 +1,10 @@
 class ViewingPartyController < ApplicationController
   include ControllerHelper
 
-  before_action :set_user_uid, :set_movie, :remember_me
+  before_action :set_user_uid, :set_movie
   def new
     @party = Party.new(party_params)
   end
-
 
   def create
       @party = Party.create(party_proper_params)
@@ -20,8 +19,13 @@ class ViewingPartyController < ApplicationController
   end
 
   def destroy
-    Party.destroy(params[:id])
-    redirect_to user_path(params[:user_id])
+      Party.destroy(params[:id])
+      flash[:notice] = 'You have successfully deleted the viewing party'
+    if params[:user_id]
+      redirect_to user_path(params[:user_id])
+    else
+      redirect_to '/admin/dashboard'
+    end
   end
 
   private

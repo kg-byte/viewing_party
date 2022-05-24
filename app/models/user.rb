@@ -11,6 +11,8 @@ class User < ApplicationRecord
   validates_presence_of :password_digest, require: true
   has_secure_password 
   
+  enum role: %w(default admin)
+  
   def past_parties
     parties.find_all{|party| Time.parse(party.time) < Time.now}
   end

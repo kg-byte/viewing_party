@@ -1,0 +1,31 @@
+<br>
+  <h3>List of Existing Parties:</h3>
+<div class="row">
+  <% @parties.each do |party| %>
+    <div class="card" style="width: 25rem;">
+      <div class="card-body"; padding: 10px>
+        <div class="mb-3">
+           <div class=<%= "viewing_party_#{party.movie_id}" %>>
+             <img src= <%= party.movie_poster %> alt="" style="width:100%;height:100%;">
+              <br>
+              <ul>
+                 <h4><%= party.movie_title%></h4>
+                 <p><%= "Date: #{party.movie_date}" %> <%= "Time: #{party.movie_time}" %></p>
+
+                      <p><%= "Host: #{party.host.name}" %></p>
+                      <div class=<%= "movie_#{party.movie_id}_viewers" %>>
+                        <p><%= "Viewers:" %></p>
+                        <ul>
+                          <% party.viewers.each do |viewer| %>
+                            <li><%= viewer.name %></li>
+                          <% end %>
+                        </ul><br>
+                      </div>
+                        <%= link_to "Delete Viewing Party",  "/admin/viewing_party/#{party.id}", method: :delete, :onclick => "return confirm('Are you sure you want to delete this viewing party?')"%>
+             </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% end %>
+</div>
