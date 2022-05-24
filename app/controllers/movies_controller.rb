@@ -1,6 +1,6 @@
 class MoviesController < ApplicationController
   include ControllerHelper
-  before_action :set_user_uid, :logged_in?
+  before_action :set_user_uid, :require_user
   def index
     @movies = MovieFacade.top20 if params[:q] == 'top rated'
     if params[:keyword]
