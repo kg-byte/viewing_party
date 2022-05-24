@@ -1,6 +1,6 @@
 class FriendshipsController < ApplicationController
   include ControllerHelper
-
+  before_action :logged_in?
 
   def create
   	user = User.find(params[:user_id])
