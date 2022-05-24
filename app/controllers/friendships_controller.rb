@@ -12,7 +12,7 @@ class FriendshipsController < ApplicationController
   	  flash[:alert] = "#{friend.name} is already your friend-try a different email!"
   	else
   	  flash[:success] = "#{friend.name} is added as a friend. Invite them to your next Viewing Party!"
-  	  Friendship.create(user_id: params[:user_id], friend_id: friend.id)
+  	  Friendship.create(user_id: current_user.id, friend_id: friend.id)
   	end  
   	  redirect_to "/dashboard"
   end

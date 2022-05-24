@@ -9,7 +9,7 @@ class ViewingPartyController < ApplicationController
   def create
       @party = Party.create(party_proper_params)
     if @party.save
-      PartyUser.create(user_id: params[:user_id], party_id: @party.id, is_host: true)
+      PartyUser.create(user_id: current_user.id, party_id: @party.id, is_host: true)
       friend_ids.each { |id| PartyUser.create(user_id: id, party_id: @party.id, is_host: false) } if friend_ids
       redirect_to dashboard_path
     else

@@ -1,8 +1,8 @@
 <div class="row">
   <% if past == true %>
-    <% parties = @user.past_parties %>
+    <% parties = current_user.past_parties %>
   <% else %>
-    <% parties = @user.upcoming_parties %>
+    <% parties = current_user.upcoming_parties %>
   <% end %>
   <% parties.each do |party| %>
     <div class="card" style="width: 25rem;">
@@ -15,7 +15,7 @@
                  <h4><%= link_to "#{party.movie_title}", dashboard_movie_path(party.movie_id)%></h4>
                  <p><%= "Date: #{party.movie_date}" %> <%= "Time: #{party.movie_time}" %></p>
 
-                 <% if party.host.id == @user.id %>
+                 <% if party.host.id == current_user.id %>
                      <p><strong><%= "You are hosting!"%></strong></p>
                      <div class=<%= "movie_#{party.movie_id}_viewers" %>>
                        <p>Friends Invited:</p>
@@ -34,7 +34,7 @@
                         <p><%= "Viewers:" %></p>
                         <ul>
                           <% party.viewers.each do |viewer| %>
-                            <% if viewer.id == @user.id %>
+                            <% if viewer.id == current_user.id %>
                               <li><strong><%= viewer.name %>(me)</strong></li>
                             <% else %>
                               <li><%= viewer.name %></li>
