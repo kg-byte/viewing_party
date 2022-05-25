@@ -8,9 +8,8 @@
 
 ## Navigating Production Site
 
-<p alignt='center'>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/y1anydj-8lk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</p>
+[![Img alt text](https://user-images.githubusercontent.com/97060659/170179644-be4b6a51-3e28-4fca-99fe-5422255c8417.png)](https://www.youtube.com/watch?v=y1anydj-8lk)
+
 
 1. Visit https://pure-earth-28237.herokuapp.com/
 1. Register as a new user (can use dummy email) or log in as: `paco@email.com`, password: `paco`.
