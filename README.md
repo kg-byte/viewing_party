@@ -2,7 +2,7 @@
 <!-- ABOUT THE PROJECT -->
 # Viewing Party
 ## About This Project
-*Viewing Party* is a rails web application in which users can explore movie options and create a viewing party event for themselves and include other users of the application. This repository is an extension of the *[Turing Viewing Party Lite Pair Project](https://backend.turing.edu/module3/projects/viewing_party_lite/index)* with additions of authentication, authorization, and session features. The Movie Database(TMDB) API endpoints are used to power movies searches and render various movie data to the user.
+*Viewing Party* is a Rails web application in which users can explore movie options and create a viewing party event for themselves and include other users of the application. This repository is an extension of the *[Turing Viewing Party Lite Pair Project](https://backend.turing.edu/module3/projects/viewing_party_lite/index)* with additions of authentication, authorization, and session features. The Movie Database(TMDB) API endpoints are used to power movie searches and render various movie data to the user.
   
 <p align="right">(<a href="#top">back to top</a>)</p>
 
