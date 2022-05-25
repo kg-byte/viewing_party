@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'movie details page' do
   let!(:user) { User.create(name: 'Jeff', email: 'jeff@email.com', password: 'abc', password_confirmation: 'abc') }
-  
+
   before :each do
     details = JSON.parse(File.read('spec/fixtures/movie_details.json'), symbolize_names: true)
     allow(TmdbService).to receive(:movie_details).and_return(details)
@@ -17,7 +17,7 @@ RSpec.describe 'movie details page' do
     fill_in :password, with: 'abc'
 
     click_on 'Log in'
-    visit "/dashboard/movies/545611"
+    visit '/dashboard/movies/545611'
   end
 
   it 'lists movie details' do
@@ -44,6 +44,6 @@ RSpec.describe 'movie details page' do
   it 'has a button to create a viewing party' do
     click_on 'Start a Viewing Party'
 
-    expect(current_path).to eq new_dashboard_movie_viewing_party_path(545611)
+    expect(current_path).to eq new_dashboard_movie_viewing_party_path(545_611)
   end
 end

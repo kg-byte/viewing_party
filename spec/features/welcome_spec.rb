@@ -10,7 +10,6 @@ RSpec.describe 'Welcomes', type: :feature do
       expect(page).to have_link 'Home'
     end
 
-
     it 'has button to new user page' do
       visit root_path
 
@@ -19,7 +18,7 @@ RSpec.describe 'Welcomes', type: :feature do
       expect(current_path).to eq '/register'
     end
 
-    it 'has button to login' do 
+    it 'has button to login' do
       visit root_path
 
       click_on 'Login'

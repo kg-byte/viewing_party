@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe MovieFacade do
-
   it 'creates 20 top movies objects' do
     data = JSON.parse(File.read('spec/fixtures/top_20.json'), symbolize_names: true)[:results]
     allow(TmdbService).to receive(:top20).and_return(data)

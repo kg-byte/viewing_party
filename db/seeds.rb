@@ -10,7 +10,6 @@
 User.destroy_all
 Party.destroy_all
 
-
-10.times do
-  User.create(name: Faker::Name.name, email: Faker::Number.number(digits: 3).to_s + Faker::Internet.email)
-end
+User.create(name: 'Admin', email: 'admin@email.com', password: 'admin', role: 1)
+User.create(name: 'Jeff', email: 'jeff@email.com', password: 'jeff')
+User.create(name: 'Amy', email: 'amy@email.com', password: 'amy')

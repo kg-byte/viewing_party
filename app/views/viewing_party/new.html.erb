@@ -15,7 +15,7 @@
      </ul>
      <ul>
       <strong><%= f.label :date, "Viewing Date", { class: "form-label"}%></strong><br/>
-      <%= f.date_select :date, order: [:month, :day, :year], prompt: { month: Date::MONTHNAMES[Date.today.month], day: Date.today.day, year: Date.today.year }, start_year: Date.today.year+2, end_year: Date.today.year %>
+      <%= f.date_select :date, order: [:month, :day, :year], start_year: Date.today.year+2, end_year: Date.today.year %>
     </ul>
     <ul>
       <strong><%= f.label :time, "Viewing Time", { class: "form-label"}%></strong><br/>
@@ -23,7 +23,7 @@
     </ul>
     <ul>
       <strong><%= f.label :users, "Invite Friends:", { class: "form-label"}%></strong><br/>
-    <% @user.friends.each do |friend| %>
+    <% @user.all_friends.each do |friend| %>
     <li>
       <div class="friend-<%=friend.id%>">
       <%= f.label :friend, friend.name %>
