@@ -8,6 +8,10 @@
 
 ## Navigating Production Site
 
+<p alignt='center'>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/y1anydj-8lk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</p>
+
 1. Visit https://pure-earth-28237.herokuapp.com/
 1. Register as a new user (can use dummy email) or log in as: `paco@email.com`, password: `paco`.
 2. Emails of existing "users" that can be added as friends if registered as new user: `amy@email.com`, `jeff@email.com`, `paco@email.com`
