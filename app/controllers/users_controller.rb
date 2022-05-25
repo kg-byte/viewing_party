@@ -13,12 +13,12 @@ class UsersController < ApplicationController
     params[:email] = user_params[:email].downcase
     user = User.create(params)
     if user.save
-      session[:user_id]={value: user.id, expires: 1.week}
+      session[:user_id] = { value: user.id, expires: 1.week }
       redirect_to dashboard_path
       flash[:success] = "Welcome, #{user.name}!"
     else
       redirect_to '/register'
-      flash[:alert] = "#{user.errors.full_messages.to_sentence}"
+      flash[:alert] = user.errors.full_messages.to_sentence.to_s
     end
   end
 

@@ -2,7 +2,7 @@ class Party < ApplicationRecord
   has_many :party_users, dependent: :destroy
   has_many :users, through: :party_users
   validates :movie_id, presence: true
-  validates_with PartyValidator, :on=> :create
+  validates_with PartyValidator, on: :create
 
   def movie
     MovieFacade.movie_details(movie_id)
@@ -28,10 +28,7 @@ class Party < ApplicationRecord
     users.where(party_users: { is_host: true })[0]
   end
 
-
   def viewers
     users.where(party_users: { is_host: false })
   end
 end
-
-

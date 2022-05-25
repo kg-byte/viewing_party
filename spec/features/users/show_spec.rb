@@ -18,7 +18,6 @@ RSpec.describe 'user dashboard' do
   end
 
   it 'has a button to discover movies' do
-  
     expect(page).to have_link('Discover Movies')
   end
 
@@ -30,27 +29,27 @@ RSpec.describe 'user dashboard' do
     visit dashboard_path
     click_on 'Discover Movies'
 
-    expect(current_path).to eq "/dashboard/discover"
+    expect(current_path).to eq '/dashboard/discover'
   end
 
-  it 'has a link to delete a viewing party for host' do 
+  it 'has a link to delete a viewing party for host' do
     details = JSON.parse(File.read('spec/fixtures/movie_details.json'), symbolize_names: true)
     allow(TmdbService).to receive(:movie_details).and_return(details)
     party = create(:party, duration: 200, time: '209901011930')
     movie = party.movie
     PartyUser.create(party: party, user: user1, is_host: true)
-   
+
     visit dashboard_path
-    click_link "Cancel Viewing Party"
+    click_link 'Cancel Viewing Party'
 
     expect(current_path).to eq('/dashboard')
     expect(current_path).to_not have_content(movie.title)
   end
 
-  it 'has a link to leave a viewing party for viewer' do 
+  it 'has a link to leave a viewing party for viewer' do
     details = JSON.parse(File.read('spec/fixtures/movie_details.json'), symbolize_names: true)
     allow(TmdbService).to receive(:movie_details).and_return(details)
-    user2=User.create(name: 'Jeff2', email: 'jeff2@email.com', password: 'abc', password_confirmation: 'abc') 
+    user2 = User.create(name: 'Jeff2', email: 'jeff2@email.com', password: 'abc', password_confirmation: 'abc')
 
     visit '/login'
 
@@ -65,60 +64,58 @@ RSpec.describe 'user dashboard' do
     PartyUser.create(party: party, user: user2, is_host: false)
 
     visit dashboard_path
-    click_link "Leave Viewing Party"
+    click_link 'Leave Viewing Party'
 
     expect(current_path).to eq(dashboard_path)
     expect(current_path).to_not have_content(movie.title)
-
-
   end
 
-   describe 'friends' do 
-      let!(:alicia) { User.create(name: 'Alicia', email: 'alicia@email.com', password: 'abc', password_confirmation: 'abc') }
-    it 'can search and add a friend in the db' do 
-      
-      within(".friends") do 
+  describe 'friends' do
+    let!(:alicia) do
+      User.create(name: 'Alicia', email: 'alicia@email.com', password: 'abc', password_confirmation: 'abc')
+    end
+    it 'can search and add a friend in the db' do
+      within('.friends') do
         fill_in :email, with: 'alicia@email.com'
         click_on 'Add Friend'
       end
 
-        expect(current_path).to eq "/dashboard"
-        expect(page).to have_content("Alicia is added as a friend. Invite them to your next Viewing Party!")
+      expect(current_path).to eq '/dashboard'
+      expect(page).to have_content('Alicia is added as a friend. Invite them to your next Viewing Party!')
     end
 
-    it 'can not add self' do 
-      
-      within(".friends") do 
+    it 'can not add self' do
+      within('.friends') do
         fill_in :email, with: 'jeff@email.com'
         click_on 'Add Friend'
       end
 
-      expect(current_path).to eq "/dashboard"
+      expect(current_path).to eq '/dashboard'
       expect(page).to have_content("You're already your best friend-no need to make it official!
 ")
     end
 
-    it 'can not add existing friends' do 
+    it 'can not add existing friends' do
       Friendship.create(user: user1, friend: alicia)
-      within(".friends") do 
+      within('.friends') do
         fill_in :email, with: 'alicia@email.com'
         click_on 'Add Friend'
       end
 
-        expect(current_path).to eq "/dashboard"
-        expect(page).to have_content("Alicia is already your friend-try a different email!")
-      end
+      expect(current_path).to eq '/dashboard'
+      expect(page).to have_content('Alicia is already your friend-try a different email!')
+    end
 
-    it 'can not add non-existing users' do 
+    it 'can not add non-existing users' do
       Friendship.create(user: user1, friend: alicia)
-      within(".friends") do 
+      within('.friends') do
         fill_in :email, with: 'aliciawow@email.com'
         click_on 'Add Friend'
       end
-      
-      expect(current_path).to eq "/dashboard"
+
+      expect(current_path).to eq '/dashboard'
       expect(page).to have_content("Doesn't seem like your friend has an account yet, invite them to join Viewing Party!
 ")
-      end
+    end
   end
 end

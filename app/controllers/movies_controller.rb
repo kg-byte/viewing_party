@@ -6,7 +6,7 @@ class MoviesController < ApplicationController
       @movies = MovieFacade.search(params[:keyword])
       @keyword = params[:keyword]
       if @movies.class != Array
-        redirect_to "/dashboard/discover"
+        redirect_to '/dashboard/discover'
         flash[:alert] = "Error: #{@movies}, please try again!"
       end
     end
@@ -15,6 +15,4 @@ class MoviesController < ApplicationController
   def show
     @data = MovieFacade.movie_data(params[:id])
   end
-
-
 end

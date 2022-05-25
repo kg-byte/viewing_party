@@ -9,9 +9,7 @@ class MovieFacade
     search_movies_data(keyword)
     if @first_20[:total_results] != 0
       data = @first_20[:results] + @second_20[:results]
-      data.map { |movie_data| MovieDetail.new(movie_data)}
-    else
-      nil
+      data.map { |movie_data| MovieDetail.new(movie_data) }
     end
   end
 

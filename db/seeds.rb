@@ -10,6 +10,6 @@
 User.destroy_all
 Party.destroy_all
 
-User.create(name: 'Admin', email: 'admin@email.com', password: 'admin', role:1)
-User.create(name: 'Jeff', email: 'jeff@email.com', password: 'jeff') 
-User.create(name: 'Amy', email: 'amy@email.com', password: 'amy') 
+User.create(name: 'Admin', email: 'admin@email.com', password: 'admin', role: 1)
+User.create(name: 'Jeff', email: 'jeff@email.com', password: 'jeff')
+User.create(name: 'Amy', email: 'amy@email.com', password: 'amy')

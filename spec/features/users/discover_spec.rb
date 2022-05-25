@@ -10,7 +10,7 @@ RSpec.describe 'users discover' do
     fill_in :password, with: 'abc'
 
     click_on 'Log in'
-    visit "/dashboard/discover"
+    visit '/dashboard/discover'
   end
 
   it 'has button to user_movies index page which shows 20 top movies', :vcr do
@@ -47,17 +47,14 @@ RSpec.describe 'users discover' do
 
   describe 'search sad path' do
     it 'returns error message if no keyword match' do
-
       dogggs = "No movies found containing 'doggggggg'"
 
       allow(MovieFacade).to receive(:search).and_return(dogggs)
       fill_in :keyword, with: 'doggggggg'
       click_button 'Search'
 
-      expect(current_path).to eq("/dashboard/discover")
+      expect(current_path).to eq('/dashboard/discover')
       expect(page).to have_content("Error: No movies found containing 'doggggggg', please try again!")
     end
   end
-
- 
 end
