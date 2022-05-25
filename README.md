@@ -6,7 +6,7 @@
   
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-## Navigate Production Site
+## Navigating Production Site
 
 1. Visit https://pure-earth-28237.herokuapp.com/
 1. Register as a new user (can use dummy email) or log in as: `paco@email.com`, password: `paco`.
@@ -111,7 +111,7 @@ API endpoints Reference: [The Movie Database](https://developers.themoviedb.org/
 - Author: [Kim Guo](https://www.linkedin.com/in/kim-guo-5331b4158/)
 
 
-[Original Viewing Party Lite Repository:](https://github.com/AliciaWatt/viewing_party_lite):
+[Original Viewing Party Lite Repository:](https://github.com/AliciaWatt/viewing_party_lite)
 - Co-Author: [Alicia Watt](https://www.linkedin.com/in/alicia-watt-3bb815225/)
 - Co-Author: [Kim Guo](https://www.linkedin.com/in/kim-guo-5331b4158/)
 
@@ -124,7 +124,7 @@ API endpoints Reference: [The Movie Database](https://developers.themoviedb.org/
 - Author: [Kim Guo](https://github.com/kg-byte)
 
 
-[Original Viewing Party Lite Repository:](https://github.com/AliciaWatt/viewing_party_lite):
+[Original Viewing Party Lite Repository:](https://github.com/AliciaWatt/viewing_party_lite)
 - Co-Author: [Alicia Watt](https://github.com/AliciaWatt)
 - Co-Author: [Kim Guo](https://github.com/kg-byte)
 
