@@ -23,7 +23,7 @@
     </ul>
     <ul>
       <strong><%= f.label :users, "Invite Friends:", { class: "form-label"}%></strong><br/>
-    <% @user.friends.each do |friend| %>
+    <% @user.all_friends.each do |friend| %>
     <li>
       <div class="friend-<%=friend.id%>">
       <%= f.label :friend, friend.name %>

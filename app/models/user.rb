@@ -20,4 +20,8 @@ class User < ApplicationRecord
   def upcoming_parties
     parties.find_all{|party| Time.parse(party.time) >= Time.now}
   end
+
+  def all_friends
+    friends+inverse_friends
+  end
 end
