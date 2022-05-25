@@ -2,7 +2,7 @@
 <!-- ABOUT THE PROJECT -->
 # Viewing Party
 ## About This Project
-[Viewing Part](https://pure-earth-28237.herokuapp.com/) is a rails web application in which users can explore movie options and create a viewing party event for themselves and include other users of the application. This repository is an extension of the [Viewing Party Lite Pair Project](https://github.com/AliciaWatt/viewing_party_lite) with additions of authentication, authorization, and session features. The Movie Database(TMDB) API endpoints are used to power movies searches and render various movie data to the user.
+Viewing Part is a rails web application in which users can explore movie options and create a viewing party event for themselves and include other users of the application. This repository is an extension of the Viewing Party Lite Pair Project with additions of authentication, authorization, and session features. The Movie Database(TMDB) API endpoints are used to power movies searches and render various movie data to the user.
   
 <p align="right">(<a href="#top">back to top</a>)</p>
 
