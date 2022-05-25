@@ -56,7 +56,7 @@ API endpoints Reference: [The Movie Database](https://developers.themoviedb.org/
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-### Installation
+## Installation
 
 1. Fork and/or Clone the repo 
   ```
