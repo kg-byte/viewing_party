@@ -5,10 +5,6 @@ class MoviesController < ApplicationController
     @data = MovieFacade.top_movies(@page) if params[:q] == 'top rated'
     if params[:keyword]
       @data = MovieFacade.search(params[:keyword], @page)
-      if @data[:movies].class != Array
-        redirect_to '/dashboard/discover'
-        flash[:alert] = "Error: #{@movies}, please try again!"
-      end
     end
   end
 

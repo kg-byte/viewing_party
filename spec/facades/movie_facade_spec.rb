@@ -2,18 +2,20 @@ require 'rails_helper'
 
 RSpec.describe MovieFacade do
   it 'creates 20 top movies objects' do
-    data = JSON.parse(File.read('spec/fixtures/top_20.json'), symbolize_names: true)[:results]
-    allow(TmdbService).to receive(:top20).and_return(data)
-    results = MovieFacade.top20
-    expect(results).to be_all MovieDetail
-    expect(results.count).to eq(20)
+    data = JSON.parse(File.read('spec/fixtures/top_20.json'), symbolize_names: true)
+    allow(TmdbService).to receive(:top_movies).and_return(data)
+    results = MovieFacade.top_movies
+
+    expect(results[:total_results]).to eq(9931)
+    expect(results[:movies]).to be_all MovieDetail
+    expect(results[:movies].count).to eq(20)
   end
 
-  it 'creates 40 movies from valid search', :vcr do
+  it 'creates 20 movies from valid search', :vcr do
     results = MovieFacade.search('man')
 
-    expect(results).to be_all MovieDetail
-    expect(results.count).to eq(40)
+    expect(results[:movies]).to be_all MovieDetail
+    expect(results[:movies].count).to eq(20)
   end
 
   it 'returns a hash of movie details, casts and reviews objects' do
