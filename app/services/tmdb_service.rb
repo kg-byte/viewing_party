@@ -1,6 +1,7 @@
 class TmdbService
-  def self.top20
-    get_url('/movie/top_rated?')[:results]
+  def self.top_movies(page)
+    get_url("/movie/top_rated?page=#{page}")
+
   end
 
   def self.search(keyword, page = 1)
