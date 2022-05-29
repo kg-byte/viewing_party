@@ -18,7 +18,7 @@ class MoviesController < ApplicationController
     @data = MovieFacade.movie_data(params[:id])
   end
 
-  private 
+  private
 
   def set_page
     @page = (params[:page] || 1).to_i

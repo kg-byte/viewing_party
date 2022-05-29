@@ -1,7 +1,6 @@
 class TmdbService
-  def self.top_movies(page=1)
+  def self.top_movies(page = 1)
     get_url("/movie/top_rated?page=#{page}")
-
   end
 
   def self.search(keyword, page = 1)

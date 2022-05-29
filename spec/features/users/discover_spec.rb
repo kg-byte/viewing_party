@@ -34,7 +34,7 @@ RSpec.describe 'users discover' do
                              title: 'Straight Outta Nowhere: Scooby-Doo! Meets Courage the Cowardly Dog', vote_average: 7.6)
       dogs = [dog1, dog2, dog3]
 
-      allow(MovieFacade).to receive(:search).and_return({total_results: 3, movies: dogs})
+      allow(MovieFacade).to receive(:search).and_return({ total_results: 3, movies: dogs })
 
       fill_in :keyword, with: 'dog'
       click_button 'Search'
@@ -47,13 +47,12 @@ RSpec.describe 'users discover' do
 
   describe 'search sad path' do
     it 'returns error message if no keyword match' do
-
-      allow(MovieFacade).to receive(:search).and_return({total_results:0, movies:[
-      ]})
+      allow(MovieFacade).to receive(:search).and_return({ total_results: 0,
+                                                          movies: [] })
       fill_in :keyword, with: 'doggggggg'
       click_button 'Search'
 
-      expect(page).to have_content("Total results: 0")
+      expect(page).to have_content('Total results: 0')
     end
   end
 end

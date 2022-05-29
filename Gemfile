@@ -37,10 +37,12 @@ gem 'jbuilder', '~> 2.5'
 gem 'bcrypt'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'faraday'
-gem "font-awesome-rails"
+gem 'font-awesome-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'brakeman'
+  gem 'bundler-audit'
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'figaro'
@@ -49,6 +51,7 @@ group :development, :test do
   gem 'rubocop', '~> 1.18.0', require: false
   gem 'rubocop-performance', '~> 1.11.0', require: false
   gem 'rubocop-rails', '~> 2.11.0', require: false
+  gem 'ruby_audit'
 end
 
 group :development do
