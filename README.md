@@ -25,7 +25,7 @@
     - [x] User Login page
     - [x] User registration page (*user authentication)
     - [x] User Dashboard with sections to add/view friends and view past/(and cancel/leave) upcoming viewing parties (*user authentication)
-    - [x] Discover movie page(logged in or not) that allows movie searches by name or top 20
+    - [x] Discover movie page(logged in or not) that allows movie searches by name or top movies; shows 20 results per page and allows user to go to next/previous page
     - [x] Movie show page that displays movie title, runtime, genre, rating, summary, cast and review author and content.
     - [x] New Party page that allows user to start a viewing party (*user authentication, *custom validator for party duration)
     - [x] Admin dashboard that allows admin to view all users' email and creation date and view/delete any viewing parties (*admin authentication)
