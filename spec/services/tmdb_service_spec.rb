@@ -1,12 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe TmdbService do
-  it 'gets data for top 20 movies', :vcr do
-    results = TmdbService.top20
-    expect(results).to be_an Array
-    expect(results.count).to eq(20)
-    expect(results[0][:title]).to eq('The Shawshank Redemption')
-    expect(results[0][:vote_average]).to eq(8.7)
+  it 'gets data for top 20 movies by default', :vcr do
+    results = TmdbService.top_movies
+
+    expect(results[:results]).to be_an Array
+    expect(results[:results].count).to eq(20)
+    expect(results[:results][0][:title]).to eq('The Shawshank Redemption')
+    expect(results[:results][0][:vote_average]).to eq(8.7)
   end
 
   it 'gets movies from keyword search', :vcr do

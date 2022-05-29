@@ -5,10 +5,14 @@
 <% end %>
 <br>
 <section class="movies">
-  <% if !@keyword %>
-    <h3>Top 20 Movies:</h3>
+  <% if !params[:keyword] %>
+    <h3>Top Movies:</h3>
+    <h4>Total results: <%=@data[:total_results]%></h4>
+    <% type = 'q=top rated' %>
   <% else %>
-    <h3>Movies by keyword "<%= @keyword %>":</h3>
+    <h3>Movies by keyword "<%= params[:keyword] %>":</h3>
+    <h4>Total results: <%=@data[:total_results]%></h4>
+    <% type = "keyword=#{params[:keyword]}" %>
   <% end %>
 
   <table class="table table-hover">
@@ -19,12 +23,12 @@
       <th scope="col">Vote Average</th>
     </tr>
   </thead>
-  <% if @movies %>
-    <% @movies.each_with_index do |movie, index|%>
+  <% if @data[:movies] %>
+    <% @data[:movies].each_with_index do |movie, index|%>
     <div class="movie-<%= movie.title %>">
     <tbody>
     <tr>
-      <th scope="row"><%= index+1 %></th>
+      <th scope="row"><%= (@page-1)*20 + index+1 %></th>
       <td> <%= link_to movie.title, dashboard_movie_path(movie.id)  %></td>
       <td> <%= movie.vote_average %></td>
     </div>
@@ -33,3 +37,40 @@
   <% end %>
   </table>
 </section> 
+
+<% if @data[:total_results] > 20 %>
+<nav aria-label="Page navigation" style="float:right;">
+  <ul class="pagination">
+    <% if @page == 1 %>
+    <li class="page-item disabled">
+      <a class="page-link" href="#" tabindex="-1">Previous</a>
+    </li>
+    <% else %>
+    <li class="page-item"><a class="page-link" href="/dashboard/movies?<%=type%>&page=<%=@page-1%>">Previous</a></li>
+    <% end %>
+    <li class="page-item"><a class="page-link" href="/dashboard/movies?<%=type%>&page=1">1</a></li>
+    <li class="page-item"><a class="page-link" href="/dashboard/movies?<%=type%>&page=2">2</a></li>
+  <% if @data[:total_results] > 40 %>
+    <li class="page-item"><a class="page-link" href="/dashboard/movies?<%=type%>&page=3">3</a></li>
+  <% end %>
+    <li class="page-item"><a class="page-link" href="/dashboard/movies?<%=type%>&page=<%=@page+1%>">Next</a></li>
+    </li>
+  </ul>
+</nav>
+<% end %>
+
+<% if !@data[:total_results]  %>
+<nav aria-label="Page navigation" style="float:right;">
+  <ul class="pagination">
+    <% if @page > 1 %>
+    <li class="page-item"><a class="page-link" href="/dashboard/movies?<%=type%>&page=<%=@page-1%>">Previous</a></li>
+    <% end %>
+    <li class="page-item"><a class="page-link" href="/dashboard/movies?<%=type%>&page=1">1</a></li>
+    <li class="page-item"><a class="page-link" href="/dashboard/movies?<%=type%>&page=2">2</a></li>
+  <% if @data[:total_results] > 40 %>
+    <li class="page-item"><a class="page-link" href="/dashboard/movies?<%=type%>&page=3">3</a></li>
+  <% end %>
+    <li class="page-item"><a class="page-link" href="/dashboard/movies?<%=type%>&page=<%=@page+1%>">Next</a></li>
+  </ul>
+</nav>
+<% end %>

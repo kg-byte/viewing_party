@@ -25,7 +25,7 @@ RSpec.describe 'users discover' do
   end
 
   describe 'search happy path' do
-    it 'can search by keyword and return relavant video if exists' do
+    it 'can search by keyword and return relavant movies if exists' do
       dog1 = MovieDetail.new(genre: nil, id: 1, runtime: 120, summary: 'a dog movie', title: 'Wiener-Dog',
                              vote_average: 7.3)
       dog2 = MovieDetail.new(genre: nil, id: 2, runtime: 120, summary: 'a dog movie',
@@ -34,7 +34,7 @@ RSpec.describe 'users discover' do
                              title: 'Straight Outta Nowhere: Scooby-Doo! Meets Courage the Cowardly Dog', vote_average: 7.6)
       dogs = [dog1, dog2, dog3]
 
-      allow(MovieFacade).to receive(:search).and_return(dogs)
+      allow(MovieFacade).to receive(:search).and_return({total_results: 3, movies: dogs})
 
       fill_in :keyword, with: 'dog'
       click_button 'Search'
@@ -47,14 +47,13 @@ RSpec.describe 'users discover' do
 
   describe 'search sad path' do
     it 'returns error message if no keyword match' do
-      dogggs = "No movies found containing 'doggggggg'"
 
-      allow(MovieFacade).to receive(:search).and_return(dogggs)
+      allow(MovieFacade).to receive(:search).and_return({total_results:0, movies:[
+      ]})
       fill_in :keyword, with: 'doggggggg'
       click_button 'Search'
 
-      expect(current_path).to eq('/dashboard/discover')
-      expect(page).to have_content("Error: No movies found containing 'doggggggg', please try again!")
+      expect(page).to have_content("Total results: 0")
     end
   end
 end

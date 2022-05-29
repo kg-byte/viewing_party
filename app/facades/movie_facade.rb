@@ -1,21 +1,16 @@
 class MovieFacade
-  def self.top20
-    TmdbService.top20.map do |movie_data|
-      MovieDetail.new(movie_data)
-    end
+  def self.top_movies(page=1)
+    search = TmdbService.top_movies(page)
+    total_results = search[:total_results]
+    movies = search[:results].map {|movie_data| MovieDetail.new(movie_data)}
+    {total_results: total_results, movies: movies}
   end
 
-  def self.search(keyword)
-    search_movies_data(keyword)
-    if @first_20[:total_results] != 0
-      data = @first_20[:results] + @second_20[:results]
-      data.map { |movie_data| MovieDetail.new(movie_data) }
-    end
-  end
-
-  def self.search_movies_data(keyword)
-    @first_20 = TmdbService.search(keyword)
-    @second_20 = TmdbService.search(keyword, 2)
+  def self.search(keyword, page=1)
+    search = TmdbService.search(keyword, page)
+    total_results = search[:total_results]
+    movies = search[:results].map {|movie_data| MovieDetail.new(movie_data)}
+    {total_results: total_results, movies: movies}
   end
 
   def self.movie_data(movie_id)
