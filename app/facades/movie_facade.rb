@@ -8,9 +8,13 @@ class MovieFacade
 
   def self.search(keyword, page=1)
     search = TmdbService.search(keyword, page)
-    total_results = search[:total_results]
-    movies = search[:results].map {|movie_data| MovieDetail.new(movie_data)}
-    {total_results: total_results, movies: movies}
+    if search[:errors]
+      @data = search
+    else
+      total_results = search[:total_results]
+      movies = search[:results].map {|movie_data| MovieDetail.new(movie_data)}
+      {total_results: total_results, movies: movies}
+    end
   end
 
   def self.movie_data(movie_id)
