@@ -23,6 +23,7 @@ Rails.application.routes.draw do
 
   get 'register', to: 'users#new'
   get 'login', to: 'sessions#login_form'
+  get 'auth/:provider/callback', to: 'sessions#omniauth'
   post 'login', to: 'sessions#create'
   get 'logout', to: 'sessions#destroy'
 end

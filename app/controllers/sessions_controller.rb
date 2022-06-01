@@ -15,6 +15,17 @@ class SessionsController < ApplicationController
     end
   end
 
+  def omniauth 
+    user = User.from_omniauth(request.env['omniauth.auth'])
+    if user.valid?
+      session[:user_id] = { value: user.id, expires: 1.week }
+      redirect_to dashboard_path
+    else 
+      redirect_to '/login'
+      flash[:error] = 'Incorrect Credentials. Please try again!'
+    end
+  end
+
   def destroy
     session.destroy
     redirect_to '/login'
